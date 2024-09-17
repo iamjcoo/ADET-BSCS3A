@@ -94,8 +94,15 @@ except mysql.connector.Error as err:
         mydb, mycur = db.connect()
 
 @app.route('/', methods=['GET', 'POST'])
-def index(name=None, title="Hello, World!", userExists=None):
-    return render_template("index.html", name=name, title=title, userExists=userExists)
+def index():
+	userRegistered = int(2 if request.cookies.get("userRegistered") == None else request.cookies.get("userRegistered"))
+	userExists = bool(False if request.cookies.get("userExists") == None else request.cookies.get("userExists"))
+	user = request.cookies.get("user")
+
+	if user == None:
+		userRegistered = 0
+
+	return render_template("index.html", name=user, title=("Hello, %s!" % user if user != None else "Hello World!"), userExists=userExists, userRegistered=userRegistered)
 
 @app.route('/register', methods=['POST'])
 def add_user():
@@ -122,13 +129,16 @@ def add_user():
                 ])
             for user in regUsers]:
             userExists = True
+            userRegistered = 2
 
     
         else:
             userExists = False
+            userRegistered = 1
     
     else:
         userExists = False
+        userRegistered = 1
 
     if all([x != '' for x in [fname, mname, lname, cnum, eadd, add]]):
         name = f"{fname} {mname} {lname}"
@@ -142,6 +152,20 @@ def add_user():
     else:
         name = None
     
-    return index(name=name, title=("Hello, %s" % fname if fname != None else "Hello World!"), userExists=userExists)
+    resp = redirect(url_for('index'))
+    
+    resp.set_cookie('user', fname)
+    resp.set_cookie('userExists', str(userExists))
+    resp.set_cookie('userRegistered', str(userRegistered))
+    
+    return resp
 
-app.run(host='192.168.1.11', port=81, debug=True)
+@app.route('/reset')
+def clear_cookies():
+	resp = redirect(url_for('index'))
+	resp.set_cookie('user', '', expires=0)
+	resp.set_cookie('userExists', '', expires=0)
+	resp.set_cookie('userRegistered', '', expires=0)
+	return resp
+
+app.run(host='0.0.0.0', port=2121, debug=True)

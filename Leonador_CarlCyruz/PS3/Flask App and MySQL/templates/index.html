@@ -9,78 +9,89 @@
 {% block content %}
     <div class='panel align-middle'>
         <h1>{{ title }}</h1>
-        <p>Please register to continue:</p>
+        {% if userRegistered == 0: %}
+        <div class="dialog warning">
+        	<p>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+					<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+				</svg>
+				Please register first before you can continue.
+			</p>	
+        </div>
+        {% elif userRegistered == 1: %}
+        <div class="dialog success">
+        	<p>
+		    	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+					<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+				</svg>
+        		Thank you for registering!
+        	</p>
+        </div>
+        {% endif %}
+        {% if name == None: %}
         <form action="/register" method="POST" id='register-form'>
-            <fieldset>
-                <table class='form-table'>
-                    <tr>
-                            <legend>Registration Form</legend>
-                        <td>
-                            <label for='fname'>First name:</label>
-                        </td>
-                        <td>
-                            <input type='text' name='fname'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='mname'>Middle name:</label>
-                        </td>
-                        <td>
-                            <input type='text' name='mname'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='lname'>Last name:</label>
-                        </td>
-                        <td>
-                            <input type='text' name='lname'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='cnumber'>Contact No.:</label>
-                        </td>
-                        <td>
-                            <input type='tel' name='cnumber'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='eaddress'>Email address:</label>
-                        </td>
-                        <td>
-                            <input type='email' name='eaddress'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label for='address'>Address:</label>
-                        </td>
-                        <td>
-                            <input type='text' name='address'>
-                        </td>
-                    </tr>
-                </table>
-                <button class='form-button' type='submit' form='register-form'>Enter</button>
-                {% if userExists: %}
-                    <div class="dialog warning">
-                        <p>User already registered.</p>
-                    </div>
-                {% elif not userExists and userExists != None: %}
-                    <div class="dialog success">
-                        <p>User successfully registered!</p>
-                    </div>
-                {% else: %}
-                    <p></p>
-                {% endif %}
-            </fieldset>
+        <p id="instruction">Please fill up the following form:</p><br/>
+        <span id="req">* Required</span>
+            <fieldset id="register-form">
+                <legend>Registration Form</legend>
+                <span id="f">
+	            	<label for='fname'>First name</label><br/>
+    	        	<input type='text' name='fname' required>
+    	        </span>
+    	        <span id="m">
+	            	<label for='mname'>Middle name</label><br/>
+    	        	<input type='text' name='mname'>
+    	        </span>
+    	        <span id="l">
+	            	<label for='lname'>Last name</label><br/>
+    	        	<input type='text' name='lname' required>
+    	        </span>
+    	        <span id="c">
+	            	<label for='cnumber'>Contact No.</label><br/>
+    	        	<input type='tel' name='cnumber' required>
+    	        </span>
+    	        <span id="e">
+	            	<label for='eaddress'>Email address</label><br/>
+    	        	<input type='email' name='eaddress' required>
+    	        </span>
+    	        <span id="a">
+	            	<label for='address'>Address</label><br/>
+    	        	<input type='text' name='address' required>
+    	        </span>
+			</fieldset>
+			<span>
+				<input type='checkbox' required> I have read and agreed with the <a href="#" name="Terms of Service">Terms of Service</a>.
+			</span>
+			<br/>
+            <button class='form-button' type='submit' form='register-form'>Register</button>
+            {% if userExists and userRegistered == False: %}
+                <div class="dialog warning">
+                	<p>
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                    		<path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                    	</svg>
+                    	User already registered.
+                    </p>
+                </div>
+            {% elif not userExists and userExists != None and userRegistered == True: %}
+                <div class="dialog success">
+                    <p>
+                    	<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+							<path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+						</svg>
+						User successfully registered!
+					</p>
+                </div>
+            {% else: %}
+                <p></p>
+            {% endif %}
         </form>
-        {% if name != None: %}
-            <p>Hello World! {{ name }}, welcome to CCCS 106 - Applications Development and Emerging Technologies</p>
         {% else: %}
-            <p>Hello, World!</p>
+        	<div id="greeting">
+	            <p>Hello World! {{ name }}, welcome to CCCS 106 - Applications Development and Emerging Technologies</p>
+	            <span></span><br/>
+    	        <a href="{{ url_for('clear_cookies') }}" method="post"><button>Reset Session</button></a>
+    	    </div>
         {% endif %}
     </div>
 {% endblock %}
