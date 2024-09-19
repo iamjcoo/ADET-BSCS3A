@@ -7,9 +7,10 @@ db_config = {
     'host': 'localhost',
     'user': 'root',
     'password': '',
-    'database': 'AppDevdb',
+    'database': 'adet',
 }
 
+#check connection to database
 def get_db_connection():
     try:
         conn = mysql.connector.connect(**db_config)
