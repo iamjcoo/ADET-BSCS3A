@@ -8,7 +8,7 @@ CREATE TABLE adet_user (
     FirstName VARCHAR(100),
     MiddleName VARCHAR(100),
     LastName VARCHAR(100),
-    CellphoneNumber VARCHAR(20),
+    CellphoneNumber INT,
     Email VARCHAR(100),
     HomeAddress VARCHAR(100)
 );

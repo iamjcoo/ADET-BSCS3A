@@ -38,12 +38,13 @@ def index():
         conn = get_db_connection()
         try:
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO User (FirstName, MiddleName, LastName, CellphoneNumber, Email, HomeAddress) VALUES (%s, %s, %s, %s, %s, %s)",
+            # inderts the input data to the database
+            cursor.execute("INSERT INTO adet_user (FirstName, MiddleName, LastName, CellphoneNumber, Email, HomeAddress) VALUES (%s, %s, %s, %s, %s, %s)",
                            (fname, mname, lname, num, email, address))
 
             conn.commit()
             return redirect(url_for('greet', fname=fname))
-        except mysql.connector.Error as e:
+        except mysql.connector.Error as e: #error handler
             print("Error executing query:", e)
             return "Error: Unable to add data to the database."
         finally:
