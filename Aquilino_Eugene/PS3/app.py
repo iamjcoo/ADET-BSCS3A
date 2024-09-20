@@ -7,7 +7,7 @@ db_config = {
     'host': 'localhost',
     'user': 'root',
     'password': '',
-    'database': 'AppDevdb',
+    'database': 'adet',
 }
 
 def get_db_connection():
@@ -37,11 +37,12 @@ def index():
         conn = get_db_connection()
         try:
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO Users (FirstName, MiddleName, LastName, CellphoneNumber, Email, HomeAddress) VALUES (%s, %s, %s, %s, %s, %s)",
+            cursor.execute("INSERT INTO adet_user(FirstName, MiddleName, LastName, CellphoneNumber, Email, HomeAddress) VALUES (%s, %s, %s, %s, %s, %s)",
                            (fname, mname, lname, num, email, address))
+            #insertion of the inputs to the database
             conn.commit()
             return redirect(url_for('greet', fname=fname))
-        except mysql.connector.Error as e:
+        except mysql.connector.Error as e: #Error handling
             print("Error executing query:", e)
             return "Error: Unable to add data to the database."
         finally:
