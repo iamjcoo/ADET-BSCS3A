@@ -28,13 +28,15 @@ def submit():
     last_name = request.form.get('last_name')
     contact_number = request.form.get('contact_number')
     email = request.form.get('email')
+    address = request.form.get('address')
     
     form_data = {
         'first_name': first_name,
         'middle_name': middle_name,
         'last_name': last_name,
         'contact_number': '0' + contact_number,
-        'email': email       
+        'email': email,  
+        'address': address  
     }
     
     data = open_json()

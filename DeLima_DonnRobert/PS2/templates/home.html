@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Problem Set 2</title>
+    <title>Problem Set 3</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
 </head>
 <body>
 
     <div class="container-sm">
-        <h1 class="my-4">Registration Form</h1>
+        <h1 class="my-4" id = "heading">Registration Form</h1>
 
 
         <form action="/submit" method="POST" id="registrationForm">
@@ -39,9 +42,15 @@
                 <div id="error_message" class="text-danger"></div>
             </div>
 
+
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Email</label>
                 <input type="email" class="form-control" name="email" placeholder="abc@mail.com">
+            </div>
+
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="address" class="form-control" name="address" placeholder="1234 Main St, Apt 5B, Example City, CA 90210">
             </div>
 
             <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
