@@ -40,43 +40,49 @@ function checkLogin() {
 	var formPrompt = document.getElementById("form-prompt");
 	
 	if (username !== '' && password !== '') {
-		// assume the entered text is an email address
-		if (username.includes('@')) {
-			// check if it's an actual valid email address
-			if (validateEmail(username)) {
-				if (password.length >= 8) {
+		// check if the password is 8 or more characters long
+		if (password.length >= 8) {
+			// assume it's an email address entered
+			if (username.includes('@')) {
+				// check if it's an actual valid email address
+				if (validateEmail(username)) {
+					// submit form
 					$('form').submit();
 				} else {
-					document.getElementsByName("password")[0].classList.add('invalid');
+					// so... it's not a valid email address
+					document.getElementsByName("username")[0].classList.add('invalid');
+					document.getElementsByName("password")[0].classList.remove('invalid');
 					
 					formPrompt.appendChild(document.createElement('p'));
-					formPrompt.childNodes[0].innerHTML = "Invalid password entered. Please try again.";
+					formPrompt.childNodes[0].innerHTML = "Invalid email address entered. Please try again.";
 					formPrompt.classList.add('dialog', 'error');
 					
 					loginButton.removeChild(spinnerSVG);
 					loginButton.innerHTML = "LOGIN";
 					
-					console.log("invalid pass");
+					console.log("invalid email");
 				}
+			} else {
+				// ig it's a username then
+				$('form').submit();
 			}
 		} else {
-			if (password.length >= 8) {
-				$('form').submit();
-			} else {
-				document.getElementsByName("password")[0].classList.add('invalid');
-				
-				formPrompt.appendChild(document.createElement('p'));
-				formPrompt.childNodes[0].innerHTML = "Invalid password entered. Please try again.";
-				formPrompt.classList.add('dialog', 'error');
-				
-				loginButton.removeChild(spinnerSVG);
-				loginButton.innerHTML = "LOGIN";
-				
-				console.log("invalid pass");
-			}
+			// password is too short
+			document.getElementsByName("password")[0].classList.add('invalid');
+			document.getElementsByName("username")[0].classList.remove('invalid');
+			
+			formPrompt.appendChild(document.createElement('p'));
+			formPrompt.childNodes[0].innerHTML = "Invalid password entered. Must be 8 or more characters long. Please try again.";
+			formPrompt.classList.add('dialog', 'error');
+			
+			loginButton.removeChild(spinnerSVG);
+			loginButton.innerHTML = "LOGIN";
+			
+			console.log("invalid pass");
 		}
 	} else {
 		if (username == '' && password != '') {
+			// username/email address missing
 			document.getElementsByName("username")[0].classList.add('invalid');
 			document.getElementsByName("password")[0].classList.remove('invalid');
 			
@@ -87,6 +93,7 @@ function checkLogin() {
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = 'LOGIN';
 		} else if (username != '' && password == '') {
+			// password missing
 			document.getElementsByName("password")[0].classList.add('invalid');
 			document.getElementsByName("username")[0].classList.remove('invalid');
 			
@@ -97,6 +104,7 @@ function checkLogin() {
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = 'LOGIN';
 		} else {
+			// bruh pls attempt an actual login for at least once
 			document.getElementsByName("username")[0].classList.add('invalid');
 			document.getElementsByName("password")[0].classList.add('invalid');
 			

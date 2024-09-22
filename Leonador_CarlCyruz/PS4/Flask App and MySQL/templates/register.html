@@ -1,0 +1,48 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Register {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/register.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="panel">
+	<h1>Register</h1>
+	<div class="register-form">
+		<form id="register" action="{{ url_for('registerPage') }}" method="POST">
+			<fieldset>
+				<label for="username">Username</label>
+				<input type="entry" name="username">
+			</fieldset>
+			<fieldset>
+				<legend>Personal information</legend>
+				<label for="fname">First name</label>
+				<input type="entry" name="fname">
+				<label for="mname">Middle name</label>
+				<input type="entry" name="mname">
+				<label for="lname">Last name</label>
+				<input type="entry" name="lname">
+				<label for="cnum">Contact No.</label>
+				<input type="tel" name="cnum">
+				<label for="email">Email address</label>
+				<input type="email" name="email">
+				<label for="address">Address</label>
+				<input type="entry" name="address">
+			</fieldset>
+			<fieldset>
+				<label for="password">Password</label>
+				<input type="password" name="password">
+				<label for="cPassword">Confirm password</label>
+				<input type="password" name="cPassword">
+			</fieldset>
+			<input type="checkbox" name="agree">
+			<label for="agree">I have read and accepted the <a href="/terms-of-service">Terms of Service</a>.</label>
+			
+		</form>
+		<div id='form-prompt'></div>
+		<button id='register-button' onclick='checkRegister()'>REGISTER</button>
+	</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+{% endblock %}

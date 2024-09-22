@@ -1,10 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
+from hashlib import sha256
 import mysql.connector
 from mysql.connector import errorcode
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
+
+Flask.secret_key = '1dkm4n'
 
 class MyDatabase:
     def __init__(self, host, user, password = None, database = None):
@@ -77,7 +80,7 @@ except mysql.connector.Error as err:
         mycur.execute("CREATE DATABASE site_users")
         mycur.execute("USE site_users")
         mycur.execute(
-            "CREATE TABLE `registered_users` ("
+            "CREATE TABLE `user_data` ("
             " `id` INT(11) NOT NULL AUTO_INCREMENT,"
             " `fname` VARCHAR(255) NOT NULL,"
             " `mname` VARCHAR(255) NOT NULL,"
@@ -88,82 +91,81 @@ except mysql.connector.Error as err:
             "PRIMARY KEY(id)"
             ")"
         )
+        mycur.execute(
+        	"CREATE TABLE `users` ("
+        	" `id` INT(11) NOT NULL AUTO_INCREMENT,"
+        	" `username` VARCHAR(255) NOT NULL,"
+        	" `password` BINARY(32) NOT NULL,"
+        	" `info_id` INT(11) NOT NULL,"
+        	" PRIMARY KEY(id),"
+        	" FOREIGN KEY(info_id) REFERENCES user_data(id)"
+        	")"
+        )
 
         mydb.disconnect()
 
         mydb, mycur = db.connect()
 
 @app.route('/', methods=['GET', 'POST'])
+def index():
+	user = session['user']
+	
+	if user == None:
+		return redirect(url_for('loginPage'))
+	else:
+		return render_template('index.html')
+
 @app.route('/login', methods=['GET', 'POST'])
-def login():
-	return render_template('login.html', dialogPrompt='not-logged-in')
+def loginPage():
+	if request.method == 'POST':
+		print("Form submitted via POST method")
+		user = request.form.get('username')
+		pswd = request.form.get('password')
+		persist = request.form.get('remember')
+		
+		print(user, pswd)
+		print("Checking login...")
+		if checkLogin(user, pswd):
+			print("User exists. Proceeding...")
+			session['user'] = user
+			session['login-count'] = str(0 if request.cookies.get('login-count') == None else int(request.cookies.get('login-count')) + 1)
+			if persist == None:
+				session.permanent = False
+			else:
+				session.permanent = True
+			return redirect(url_for('index'))
+		else:
+			print("Invalid username or password.")
+			return render_template('login.html', dialogPrompt='user-not-found')
+		
+	elif request.method == 'GET':
+		if session['user']:
+			return redirect(url_for('index'))
+		else:
+			return render_template('login.html', dialogPrompt='not-logged-in')
 
-@app.route('/register2', methods=['POST'])
-def register():
-	return "hi"
+def checkLogin(user, password):
+	mycur.execute("SELECT * FROM users")
+	users = mycur.fetchall()
+	
+	if user in [x[1] for x in users]:
+		user_id = [x[1] for x in users].index(user)
+		mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id + 1}")
+		fetchedPassHash = mycur.fetchone()[0]
+		passHash = sha256(password.encode()).hexdigest()
+		
+		if passHash.upper() == fetchedPassHash:
+			return True
+		else:
+			return False
+	else:
+		return False
 
-@app.route('/register', methods=['POST'])
-def add_user():
-    fname = request.form.get('fname')
-    mname = request.form.get('mname')
-    lname = request.form.get('lname')
-    cnum = request.form.get('cnumber')
-    eadd = request.form.get('eaddress')
-    add = request.form.get('address')
+@app.route('/register', methods=['GET', 'POST'])
+def registerPage():
+	if request.method == 'POST':
+		return "Form submit success"
+	else:
+		return render_template('register.html')
 
-    # check if the user has previously registered before
-    mycur.execute("SELECT * FROM registered_users")
-    regUsers = mycur.fetchall()
-    print(regUsers)
-    if regUsers != None:
-        if True in [
-                all([
-                    (fname == user[1]),
-                    (mname == user[2]),
-                    (lname == user[3]),
-                    (cnum == user[4]),
-                    (eadd == user[5]),
-                    (add == user[6])
-                ])
-            for user in regUsers]:
-            userExists = True
-            userRegistered = 2
-
-    
-        else:
-            userExists = False
-            userRegistered = 1
-    
-    else:
-        userExists = False
-        userRegistered = 1
-
-    if all([x != '' for x in [fname, mname, lname, cnum, eadd, add]]):
-        name = f"{fname} {mname} {lname}"
-        
-        if not userExists:
-            query = "INSERT INTO registered_users VALUES (NULL, %s, %s, %s, %s, %s, %s)"
-            val = (fname, mname, lname, cnum, eadd, add)
-            mycur.execute(query, val)
-            mydb.commit()
-
-    else:
-        name = None
-    
-    resp = redirect(url_for('index'))
-    
-    resp.set_cookie('user', fname)
-    resp.set_cookie('userExists', str(userExists))
-    resp.set_cookie('userRegistered', str(userRegistered))
-    
-    return resp
-
-@app.route('/clear')
-def clear_cookies():
-	resp = redirect(url_for('index'))
-	resp.set_cookie('user', '', expires=0)
-	resp.set_cookie('userExists', '', expires=0)
-	resp.set_cookie('userRegistered', '', expires=0)
-	return resp
-
-app.run(host='0.0.0.0', port=2121, debug=True)
+app.run(host='192.168.1.5', port=2121, debug=True)

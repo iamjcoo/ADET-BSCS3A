@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title%} Login | {{ title }} {% endblock %}
+{% block title %} Login | {{ title }} {% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -15,7 +15,7 @@
 			<p>Please login first before you continue.</p>
 		</div>
 		{% endif %}
-		<form id="login" action="{{ url_for('login') }}" method="POST">
+		<form id="login" action="{{ url_for('loginPage') }}" method="POST">
 			<label for="username">Username or email address</label>
 			<input type="entry" name="username">
 			<label for="password">Password</label>
@@ -25,8 +25,9 @@
 		</form>
 		<div id='form-prompt'></div>
 		<button id="login-button" onclick="checkLogin()">LOGIN</button>
-		<p id='register-prompt'>Don't have an account? <a href="{{ url_for('register') }}">Register here!</a></p>
+		<p id='register-prompt'>Don't have an account? <a href="{{ url_for('registerPage') }}">Register here!</a></p>
 	</div>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/login.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/dialog.js') }}"></script>
 {% endblock %}
