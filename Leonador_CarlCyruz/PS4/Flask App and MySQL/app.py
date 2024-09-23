@@ -88,7 +88,7 @@ except mysql.connector.Error as err:
             " `contact_no` VARCHAR(20) NOT NULL,"
             " `email_add` VARCHAR(255) NOT NULL,"
             " `address` VARCHAR(255) NOT NULL,"
-            "PRIMARY KEY(id)"
+            " PRIMARY KEY(id)"
             ")"
         )
         mycur.execute(
@@ -108,7 +108,10 @@ except mysql.connector.Error as err:
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	user = session['user']
+	if session == {}:
+		user = None
+	else:
+		user = session['user']
 	
 	if user == None:
 		return redirect(url_for('loginPage'))
@@ -139,33 +142,77 @@ def loginPage():
 			return render_template('login.html', dialogPrompt='user-not-found')
 		
 	elif request.method == 'GET':
-		if session['user']:
-			return redirect(url_for('index'))
+		if session != {}:
+			if session['user']:
+				return redirect(url_for('index'))
+			elif session['just-registered']:
+				return render_template('login.html', dialogPrompt='just-registered')
 		else:
 			return render_template('login.html', dialogPrompt='not-logged-in')
 
-def checkLogin(user, password):
+def checkLogin(user, password, checkType=0):
 	mycur.execute("SELECT * FROM users")
 	users = mycur.fetchall()
 	
 	if user in [x[1] for x in users]:
-		user_id = [x[1] for x in users].index(user)
-		mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id + 1}")
-		fetchedPassHash = mycur.fetchone()[0]
-		passHash = sha256(password.encode()).hexdigest()
-		
-		if passHash.upper() == fetchedPassHash:
-			return True
+		if checkType == 0:
+			user_id = [x[1] for x in users].index(user)
+			mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id + 1}")
+			fetchedPassHash = mycur.fetchone()[0]
+			passHash = sha256(password.encode()).hexdigest()
+			
+			if passHash.upper() == fetchedPassHash:
+				return True
+			else:
+				return False
 		else:
-			return False
+			return True
 	else:
 		return False
 
 @app.route('/register', methods=['GET', 'POST'])
 def registerPage():
 	if request.method == 'POST':
-		return "Form submit success"
+		username = request.form['username']
+		fname = request.form['fname']
+		mname = request.form['mname']
+		lname = request.form['lname']
+		cnum = request.form['cnum']
+		email = request.form['email']
+		address = request.form['address']
+		password = request.form['password']
+		
+		# check if they have previously registered before
+		if checkLogin(username, '', 1):
+			return render_template('register.html', dialogPrompt='user-already-exists')
+		
+		# check if pre-existing user records match the user's details submitted (to assign its assigned id instead of adding another duplicate entry)
+		query = "SELECT * FROM user_data WHERE fname=%s, lname=%s, contact_no=%s, email=%s, address=%s"
+		val = (fname, lname, cnum, email, address)
+		mycur.execute(query, val)
+		matched = mycur.fetchall()
+		
+		if len(matched) >= 1:
+			user_data_id = matched[0][0]
+		else:
+			# add user info to table
+			query = "INSERT INTO `user_info` VALUES (NULL, %s, %s, %s, %s, %s, %s)"
+			val = (fname, mname, lname, cnum, email, address)
+			mydb.commit()
+			
+			mycur.execute("SELECT COUNT(*) FROM user_data")
+			user_data_id = mycur.fetchall()[0]
+		
+		# add user into table
+		query = "INSERT INTO `users` VALUES (NULL, %s, %s, %s)"
+		val = (username, sha256(password.encode()).digest(), user_data_id)
+		mycur.execute(query, val)
+		mydb.commit()
+		
+		session['just-registered'] = True
+		return redirect(url_for('loginPage'))
+		
 	else:
 		return render_template('register.html')
 
-app.run(host='192.168.1.5', port=2121, debug=True)
+app.run(host='0.0.0.0', port=2121, debug=True)
