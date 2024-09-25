@@ -1,8 +1,11 @@
 {% extends "bootstrap/base.html" %}
-{% block title %} Login | {{ title }} {% endblock %}
+{% block title %} Login {% endblock %}
 
 {% block styles %}
 {{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/dialog.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/spinner.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/login.css') }}">
 {% endblock %}
 
@@ -14,6 +17,14 @@
 		<div class="dialog warning">
 			<p>Please login first before you continue.</p>
 		</div>
+		{% elif dialogPrompt == 'invalid-user-or-pass': %}
+		<div class="dialog error">
+			<p>Invalid username/email or password. Possibly the user doesn't exist. Please consider registering!</p>
+		</div>
+		{% elif dialogPrompt == 'just-registered': %}
+		<div class="dialog success">
+			<p>Registration successful! Please login to continue.</p>
+		</div>
 		{% endif %}
 		<form id="login" action="{{ url_for('loginPage') }}" method="POST">
 			<label for="username">Username or email address</label>
@@ -24,8 +35,12 @@
 			<label for="remember">Remember me</label>
 		</form>
 		<div id='form-prompt'></div>
-		<button id="login-button" onclick="checkLogin()">LOGIN</button>
-		<p id='register-prompt'>Don't have an account? <a href="{{ url_for('registerPage') }}">Register here!</a></p>
+		<div id="l">
+			<button id="login-button" onclick="checkLogin()">LOGIN</button>
+		</div>
+		<center>
+			<p id='register-prompt'>Don't have an account? <a href="{{ url_for('registerPage') }}">Register here!</a></p>
+		</center>
 	</div>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/login.js') }}"></script>

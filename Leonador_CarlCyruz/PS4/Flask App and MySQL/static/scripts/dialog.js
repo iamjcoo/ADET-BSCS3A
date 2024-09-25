@@ -12,31 +12,54 @@ dialogIcon.setAttribute('fill', 'currentColor');
 dialogIcon.setAttribute('viewBox', '0 0 16 16');
 dialogIcon.classList.add(['bi']);
 
-var dialogs = document.getElementsByClassName('dialog');
+function addIcons() {
+	var dialogs = document.getElementsByClassName('dialog');
 
-for (let dialog of dialogs) {
-	if (dialog.classList.contains('warning')) {
-		let warningIcon = dialogIcon.cloneNode(true);
-		warningIcon.classList.add(['bi-exclamation-triangle-fill']);		
-		warningIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
-		warningIcon.childNodes[0].setAttribute('d', dialogIconPaths['warning']);
-		
-		dialog.childNodes[1].insertBefore(warningIcon, dialog.childNodes[1].childNodes[0]);
-	} else if (dialog.classList.contains('success')) {
-		let successIcon = dialogIcon.cloneNode(true);
-		successIcon.classList.add(['bi-check-circle-fill']);
-		successIcon.appendChild(document.createElementNS("https://www.w3.org/2000/svg", 'path'));
-		successIcon.childNodes[0].setAttribute('d', dialogIconPaths['success']);
-		
-		dialog.childNodes[1].insertBefore(successIcon, dialog.childNodes[1].childNodes[0]);
-	} else if (dialog.classList.contains('info')) {
-		let infoIcon = dialogIcon.cloneNode(true);
-		infoIcon.classList.add(['bi-info-circle']);
-		infoIcon.appendChild(document.createElementNS("https://www.w3.org/2000/svg", 'path'));
-		infoIcon.appendChild(document.createElementNS("https://www.w3.org/2000/svg", 'path'));
-		infoIcon.childNodes[0].setAttribute('d', dialogIconPaths['info-seg1']);
-		infoIcon.childNodes[1].setAttribute('d', dialogIconPaths['info-seg2']);
-		
-		dialog.childNodes[1].insertBefore(infoIcon, dialog.childNodes[1].childNodes[0]);
+	if (dialogs.length == 0) {
+		return;
 	}
+
+	for (let dialog of dialogs) {
+		let selectedIcon;
+		if (dialog.classList.contains('warning')) {
+			let warningIcon = dialogIcon.cloneNode(true);
+			warningIcon.classList.add(['bi-exclamation-triangle-fill']);		
+			warningIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
+			warningIcon.childNodes[0].setAttribute('d', dialogIconPaths['warning']);
+
+			selectedIcon = warningIcon;
+		} else if (dialog.classList.contains('success')) {
+			let successIcon = dialogIcon.cloneNode(true);
+			successIcon.classList.add(['bi-check-circle-fill']);
+			successIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
+			successIcon.childNodes[0].setAttribute('d', dialogIconPaths['success']);
+
+			selectedIcon = successIcon;
+		} else if (dialog.classList.contains('info')) {
+			let infoIcon = dialogIcon.cloneNode(true);
+			infoIcon.classList.add(['bi-info-circle']);
+			infoIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
+			infoIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
+			infoIcon.childNodes[0].setAttribute('d', dialogIconPaths['info-seg1']);
+			infoIcon.childNodes[1].setAttribute('d', dialogIconPaths['info-seg2']);
+
+			selectedIcon = infoIcon;
+		} else if (dialog.classList.contains('error')) {
+			let errorIcon = dialogIcon.cloneNode(true);
+			errorIcon.classList.add(['bi-x-circle-fill']);
+			errorIcon.appendChild(document.createElementNS("http://www.w3.org/2000/svg", 'path'));
+			errorIcon.childNodes[0].setAttribute('d', dialogIconPaths['error']);
+
+			selectedIcon = errorIcon;
+		}
+
+		if (dialog.getElementsByTagName('p').length == 1) {
+			if (dialog.children[0].getElementsByTagName('svg').length == 0) {
+				dialog.children[0].insertBefore(selectedIcon, dialog.children[0].childNodes[0]);
+			}
+		}
+	}
+	return;
 }
+
+addIcons();

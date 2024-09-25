@@ -1,31 +1,30 @@
-.dialog {
-	background-color: yellow;
-	border-radius: 10px;
-	color: gray;
-}
-
-.warning {
-	background-color: yellow;
-}
-
-.spinner_S1WN {
-	animation: spinner_MGfb .8s linear infinite;
-	animation-delay: -.8s;
-}
-
-.spinner_Km9P {
-	animation-delay: -.65s;
-}
-
-.spinner_JApP {
-	animation-delay: -.5s;
-}
-
-@keyframes spinner_MGfb{
-	93.75%, 100% {opacity: .2};
+body {
+	background-color: rgb(116, 116, 116);
 }
 
 .invalid {
 	border-color: red;
 	color: red;
+}
+
+#login input[type="checkbox"] {
+	width: auto;
+	display: inline-block;
+	margin-left: 10px;
+}
+
+#login label[for="remember"] {
+	width: auto;
+	display: inline-block;
+}
+
+#l {
+	display: grid;
+	grid-template-areas: ". l .";
+	width: 100%;
+}
+
+#login-button {
+	grid-area: l;
+	width: 100%;
 }

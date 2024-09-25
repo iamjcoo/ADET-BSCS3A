@@ -108,7 +108,7 @@ except mysql.connector.Error as err:
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	if session == {}:
+	if session == {} or session.get('user') == None:
 		user = None
 	else:
 		user = session['user']
@@ -116,7 +116,7 @@ def index():
 	if user == None:
 		return redirect(url_for('loginPage'))
 	else:
-		return render_template('index.html')
+		return render_template('index.html', name=user, title=f"Welcome, {user}!")
 
 @app.route('/login', methods=['GET', 'POST'])
 def loginPage():
@@ -126,11 +126,16 @@ def loginPage():
 		pswd = request.form.get('password')
 		persist = request.form.get('remember')
 		
-		print(user, pswd)
 		print("Checking login...")
 		if checkLogin(user, pswd):
 			print("User exists. Proceeding...")
-			session['user'] = user
+			if '@' in user:
+				mycur.execute("SELECT b.username, a.fname FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id AND a.email_add = \"{}\"".format(user))
+			else:
+				mycur.execute("SELECT b.username, a.fname FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id AND b.username = \"{}\"".format(user))
+			user = mycur.fetchone()
+			session['user'] = user[0]
+			session['fname'] = user[1]
 			session['login-count'] = str(0 if request.cookies.get('login-count') == None else int(request.cookies.get('login-count')) + 1)
 			if persist == None:
 				session.permanent = False
@@ -139,25 +144,31 @@ def loginPage():
 			return redirect(url_for('index'))
 		else:
 			print("Invalid username or password.")
-			return render_template('login.html', dialogPrompt='user-not-found')
+			return render_template('login.html', dialogPrompt='invalid-user-or-pass')
 		
 	elif request.method == 'GET':
 		if session != {}:
-			if session['user']:
+			if session.get('user'):
 				return redirect(url_for('index'))
-			elif session['just-registered']:
+			elif session.get('just-registered'):
 				return render_template('login.html', dialogPrompt='just-registered')
 		else:
 			return render_template('login.html', dialogPrompt='not-logged-in')
 
 def checkLogin(user, password, checkType=0):
-	mycur.execute("SELECT * FROM users")
+	mycur.execute("SELECT b.id, b.username, a.email_add FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id")
 	users = mycur.fetchall()
+
+	usernames = [x[1] for x in users]
+	emails = [x[2] for x in users]
 	
-	if user in [x[1] for x in users]:
+	if user in usernames or user in emails:
 		if checkType == 0:
-			user_id = [x[1] for x in users].index(user)
-			mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id + 1}")
+			if '@' in user:
+				user_id = max([x[0] for x in users if x[2] == user])
+			else:
+				user_id = max([x[0] for x in users if x[1] == user])
+			mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id}")
 			fetchedPassHash = mycur.fetchone()[0]
 			passHash = sha256(password.encode()).hexdigest()
 			
@@ -187,21 +198,20 @@ def registerPage():
 			return render_template('register.html', dialogPrompt='user-already-exists')
 		
 		# check if pre-existing user records match the user's details submitted (to assign its assigned id instead of adding another duplicate entry)
-		query = "SELECT * FROM user_data WHERE fname=%s, lname=%s, contact_no=%s, email=%s, address=%s"
-		val = (fname, lname, cnum, email, address)
-		mycur.execute(query, val)
+		mycur.execute('SELECT * FROM user_data WHERE fname="{}" AND lname="{}" AND contact_no="{}" AND email_add="{}" AND address="{}"'.format(fname, lname, cnum, email, address))
 		matched = mycur.fetchall()
 		
 		if len(matched) >= 1:
 			user_data_id = matched[0][0]
 		else:
 			# add user info to table
-			query = "INSERT INTO `user_info` VALUES (NULL, %s, %s, %s, %s, %s, %s)"
+			query = "INSERT INTO `user_data` VALUES (NULL, %s, %s, %s, %s, %s, %s)"
 			val = (fname, mname, lname, cnum, email, address)
+			mycur.execute(query, val)
 			mydb.commit()
 			
 			mycur.execute("SELECT COUNT(*) FROM user_data")
-			user_data_id = mycur.fetchall()[0]
+			user_data_id = mycur.fetchall()[0][0]
 		
 		# add user into table
 		query = "INSERT INTO `users` VALUES (NULL, %s, %s, %s)"
@@ -214,5 +224,18 @@ def registerPage():
 		
 	else:
 		return render_template('register.html')
+
+@app.route('/logout')
+def logout():
+	if session.get('user'):
+		print("Logging out", session.get('user'))
+		session.clear()
+		return redirect(url_for('index'))
+	else:
+		return redirect(url_for('index'))
+
+@app.route('/tos')
+def tos():
+	return "<h1>Terms of Service</h1><p>The terms of the service. Would you agree?</p>"
 
 app.run(host='0.0.0.0', port=2121, debug=True)

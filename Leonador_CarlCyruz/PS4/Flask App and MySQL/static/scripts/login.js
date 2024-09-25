@@ -13,16 +13,19 @@ spinnerSVG.childNodes[0].classList.add('spinner_S1WN');
 spinnerSVG.childNodes[0].setAttribute('cx', '4');
 spinnerSVG.childNodes[0].setAttribute('cy', '12');
 spinnerSVG.childNodes[0].setAttribute('r', '3');
+spinnerSVG.childNodes[0].setAttribute('fill', 'white');
 
 spinnerSVG.childNodes[1].classList.add('spinner_S1WN', 'spinner_Km9P');
 spinnerSVG.childNodes[1].setAttribute('cx', '12');
 spinnerSVG.childNodes[1].setAttribute('cy', '12');
 spinnerSVG.childNodes[1].setAttribute('r', '3');
+spinnerSVG.childNodes[1].setAttribute('fill', 'white');
 
 spinnerSVG.childNodes[2].classList.add('spinner_S1WN', 'spinner_JApP');
 spinnerSVG.childNodes[2].setAttribute('cx', '20');
 spinnerSVG.childNodes[2].setAttribute('cy', '12');
 spinnerSVG.childNodes[2].setAttribute('r', '3');
+spinnerSVG.childNodes[2].setAttribute('fill', 'white');
 
 // 3-dots-fade.svg usage
 var loginButton = document.getElementById('login-button');
@@ -53,9 +56,12 @@ function checkLogin() {
 					document.getElementsByName("username")[0].classList.add('invalid');
 					document.getElementsByName("password")[0].classList.remove('invalid');
 					
-					formPrompt.appendChild(document.createElement('p'));
+					if (formPrompt.getElementsByTagName('p').length == 0) {
+						formPrompt.appendChild(document.createElement('p'));
+					}
 					formPrompt.childNodes[0].innerHTML = "Invalid email address entered. Please try again.";
 					formPrompt.classList.add('dialog', 'error');
+					addIcons();
 					
 					loginButton.removeChild(spinnerSVG);
 					loginButton.innerHTML = "LOGIN";
@@ -71,9 +77,12 @@ function checkLogin() {
 			document.getElementsByName("password")[0].classList.add('invalid');
 			document.getElementsByName("username")[0].classList.remove('invalid');
 			
-			formPrompt.appendChild(document.createElement('p'));
+			if (formPrompt.getElementsByTagName('p').length == 0) {
+				formPrompt.appendChild(document.createElement('p'));
+			}
 			formPrompt.childNodes[0].innerHTML = "Invalid password entered. Must be 8 or more characters long. Please try again.";
 			formPrompt.classList.add('dialog', 'error');
+			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = "LOGIN";
@@ -86,9 +95,12 @@ function checkLogin() {
 			document.getElementsByName("username")[0].classList.add('invalid');
 			document.getElementsByName("password")[0].classList.remove('invalid');
 			
-			formPrompt.appendChild(document.createElement('p'));
+			if (formPrompt.getElementsByTagName('p').length == 0) {
+				formPrompt.appendChild(document.createElement('p'));
+			}
 			formPrompt.childNodes[0].innerHTML = "No username or email address entered. Please enter one.";
 			formPrompt.classList.add('dialog', 'error');
+			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = 'LOGIN';
@@ -97,9 +109,12 @@ function checkLogin() {
 			document.getElementsByName("password")[0].classList.add('invalid');
 			document.getElementsByName("username")[0].classList.remove('invalid');
 			
-			formPrompt.appendChild(document.createElement('p'));
+			if (formPrompt.getElementsByTagName('p').length == 0) {
+				formPrompt.appendChild(document.createElement('p'));
+			}
 			formPrompt.childNodes[0].innerHTML = "Password required. Please enter one.";
 			formPrompt.classList.add('dialog', 'error');
+			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = 'LOGIN';
@@ -108,9 +123,12 @@ function checkLogin() {
 			document.getElementsByName("username")[0].classList.add('invalid');
 			document.getElementsByName("password")[0].classList.add('invalid');
 			
-			formPrompt.appendChild(document.createElement('p'));
+			if (formPrompt.getElementsByTagName('p').length == 0) {
+				formPrompt.appendChild(document.createElement('p'));
+			}
 			formPrompt.childNodes[0].innerHTML = "Please enter your login details.";
 			formPrompt.classList.add('dialog', 'error');
+			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
 			loginButton.innerHTML = 'LOGIN';
