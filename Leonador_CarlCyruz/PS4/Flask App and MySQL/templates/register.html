@@ -1,0 +1,76 @@
+{% extends "bootstrap/base.html" %}
+{% block title %} Register {% endblock %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/base.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/dialog.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/spinner.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/register.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="panel">
+	<h1>Register</h1>
+	<div class="register-form">
+		<form id="register" action="{{ url_for('registerPage') }}" method="POST">
+			<fieldset id="username-form">
+				<div id="u">
+					<label for="username">Username<span id='req'>*</span></label>
+					<input type="entry" name="username">
+				</div>
+			</fieldset>
+			<fieldset id="register-form">
+				<legend>Personal information</legend>
+				<div id="f">
+					<label for="fname">First name<span id='req'>*</span></label>
+					<input type="entry" name="fname">
+				</div>
+				<div id="m">
+					<label for="mname">Middle name</label>
+					<input type="entry" name="mname">
+				</div>
+				<div id="l">
+					<label for="lname">Last name<span id='req'>*</span></label>
+					<input type="entry" name="lname">
+				</div>
+				<div id="c">
+					<label for="cnum">Contact No.<span id='req'>*</span></label>
+					<input type="tel" name="cnum">
+				</div>
+				<div id="e">
+					<label for="email">Email address<span id='req'>*</span></label>
+					<input type="email" name="email">
+				</div>
+				<div id="a">
+					<label for="address">Address<span id='req'>*</span></label>
+					<input type="entry" name="address">
+				</div>
+			</fieldset>
+			<fieldset id="password-form">
+				<div id="p">
+					<label for="password">Password<span id='req'>*</span></label>
+					<input type="password" name="password">
+				</div>
+				<div id="Cp">
+					<label for="cPassword">Confirm password<span id='req'>*</span></label>
+					<input type="password" name="cPassword">
+				</div>
+			</fieldset>
+			<div id="tos">
+				<center>
+					<input type="checkbox" name="agree" id="agree">
+					<label for="agree">I have read and accepted the <a href="{{ url_for('tos') }}">Terms of Service</a>.<span id='req'>*</span></label>
+				</center>
+			</div>
+			
+		</form>
+		<div id='form-prompt'></div>
+		<div id="r">
+			<button id='register-button' onclick='checkRegister()'>REGISTER</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/register.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/dialog.js') }}"></script>
+{% endblock %}
