@@ -9,7 +9,7 @@ def home():
     return render_template("home.html")
 
 @app.route("/save", methods=["POST"])
-def save():
+def save(): #saves the data to a dictionary
     data = {
         "First Name: ": request.form.get("fname"),
         "Middle Name: ": request.form.get("mname"),
@@ -19,14 +19,14 @@ def save():
         "Address: ": request.form.get("address")
         
     }
-    file_path = "out.json"
+    file_path = "out.json" #file name, can also add file path too
     
-    try:
+    try:#opens a new file path only of file doesn't exist then adds the data to that file
         with open(file_path, "w") as file:
             json.dump(data, file, indent = 4)
             return f"Your entry has been save to \"{file_path}\""
     
-    except FileExistsError:
+    except FileExistsError:#error message if the file already exists, can be better by making it delete the existing file or creating a new file, or just append.
         return "File already exists!"
     
 

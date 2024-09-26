@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- this part is the format -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
 </head>
 <body>
-    <h1>Save User Input to JSON File</h1>
+    <h1>Save User Input to Database</h1>
     <br>
-
+    <!--form that takes inputs -->
     <form action="save" method="post">
-        <div>
+        <div> <!--type decides what type of input to take-->
             <label for="fname">First Name: </label>
-            <input type="text" id="fname" name="fname" placeholder="Jose">
+            <input type="text" id="fname" name="fname" placeholder="Jose"><!--placeholder is the text on the box-->
         </div>
-
+<!--you can think of id as a link, if you click the form, it will automatically open the input box(must be unique in the whole file)-->
         <br>
-
+<!--name on the other hand is just like a variable that stores the input value(must be unique in the whole form)-->
         <div>
             <label for="mname">Middle Name: </label>
             <input type="text" id="mname" name="mname" placeholder="Protacio">
