@@ -1,2 +1,0 @@
-Regaspi,Marevel
-BSCS3A
