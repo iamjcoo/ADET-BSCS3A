@@ -64,7 +64,7 @@ function checkLogin() {
 					addIcons();
 					
 					loginButton.removeChild(spinnerSVG);
-					loginButton.innerHTML = "LOGIN";
+					loginButton.innerHTML = "SIGN IN";
 					
 					console.log("invalid email");
 				}
@@ -85,7 +85,7 @@ function checkLogin() {
 			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
-			loginButton.innerHTML = "LOGIN";
+			loginButton.innerHTML = "SIGN IN";
 			
 			console.log("invalid pass");
 		}
@@ -103,7 +103,7 @@ function checkLogin() {
 			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
-			loginButton.innerHTML = 'LOGIN';
+			loginButton.innerHTML = 'SIGN IN';
 		} else if (username != '' && password == '') {
 			// password missing
 			document.getElementsByName("password")[0].classList.add('invalid');
@@ -117,7 +117,7 @@ function checkLogin() {
 			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
-			loginButton.innerHTML = 'LOGIN';
+			loginButton.innerHTML = 'SIGN IN';
 		} else {
 			// bruh pls attempt an actual login for at least once
 			document.getElementsByName("username")[0].classList.add('invalid');
@@ -131,7 +131,7 @@ function checkLogin() {
 			addIcons();
 			
 			loginButton.removeChild(spinnerSVG);
-			loginButton.innerHTML = 'LOGIN';
+			loginButton.innerHTML = 'SIGN IN';
 		}
 	}
 }
