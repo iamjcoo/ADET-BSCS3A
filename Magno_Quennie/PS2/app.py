@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import json
+import datetime
 
 app = Flask(__name__)
 
@@ -9,25 +10,26 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    name = request.form['name']
-    middle_name = request.form['middle_name']
-    last_name = request.form['last_name']
-    contact_number = request.form['contact_number']
-    email_address = request.form['email_address']
-    address = request.form['address']
-
+    info = request.form.to_dict()
+    # Add timestamp
+    info['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    
     data = {
-        "name": name,
-        "middle_name": middle_name,
-        "last_name": last_name,
-        "contact_number": contact_number,
-        "email_address": email_address,
-        "address": address
-    }
+    "firstName": info['firstName'], 
+    "middleName": info['middleName'], 
+    "lastName": info['lastName'], 
+    "contactNumber": info['contactNumber'], 
+    "emailAddress":info['emailAddress'], 
+    "address": info['address'], 
+    "timestamp": info['timestamp']
+}
 
-    with open('UserData.json', 'a') as f:
+    # Save data to JSON file
+    with open('user_info.json', 'a') as f:
         json.dump(data, f)
+        f.write('\n')  # Add a newline for better readability
 
-    return render_template('form.html', message="information saved successfully!")
+    return jsonify({'message': 'Information saved successfully!'})
+
 if __name__ == '__main__':
     app.run(debug=True)
