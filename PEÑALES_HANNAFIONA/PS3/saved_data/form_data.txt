@@ -1,0 +1,1 @@
+{'first_name': 'Hanna Fiona', 'middle_name': 'Lustiano', 'last_name': 'Pe�ales', 'contact_number': '09635089123', 'email_address': 'penalessamantha@gmail.com', 'address': 'La Trinidad'}
