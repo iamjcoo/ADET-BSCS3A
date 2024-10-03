@@ -66,7 +66,7 @@ class MyDatabase:
 db = MyDatabase(
     host='localhost',
     user='root',
-    database='site_users'
+    database='adet'
 )
 
 try:
@@ -77,10 +77,10 @@ except mysql.connector.Error as err:
 
         mydb, mycur = db.connect(1)
 
-        mycur.execute("CREATE DATABASE site_users")
-        mycur.execute("USE site_users")
+        mycur.execute("CREATE DATABASE adet")
+        mycur.execute("USE adet")
         mycur.execute(
-            "CREATE TABLE `user_data` ("
+            "CREATE TABLE `adet_user_data` ("
             " `id` INT(11) NOT NULL AUTO_INCREMENT,"
             " `fname` VARCHAR(255) NOT NULL,"
             " `mname` VARCHAR(255) NOT NULL,"
@@ -92,13 +92,13 @@ except mysql.connector.Error as err:
             ")"
         )
         mycur.execute(
-        	"CREATE TABLE `users` ("
+        	"CREATE TABLE `adet_users` ("
         	" `id` INT(11) NOT NULL AUTO_INCREMENT,"
         	" `username` VARCHAR(255) NOT NULL,"
         	" `password` BINARY(32) NOT NULL,"
         	" `info_id` INT(11) NOT NULL,"
         	" PRIMARY KEY(id),"
-        	" FOREIGN KEY(info_id) REFERENCES user_data(id)"
+        	" FOREIGN KEY(info_id) REFERENCES adet_user_data(id)"
         	")"
         )
 
@@ -116,12 +116,13 @@ def index():
 	if user == None:
 		return redirect(url_for('loginPage'))
 	else:
-		return render_template('index.html', name=user, title=f"Welcome, {user}!")
+		mycur.execute("SELECT CONCAT(a.fname, a.fname, ' ', a.mname, ' ', a.lname) as name, a.contact_no, a.email_add, a.address, b.username FROM adet_user_data INNER JOIN adet_users as b JOIN adet_user_data as a WHERE b.username='%s'" % user)
+		info_data = mycur.fetchone()
+		return render_template('index.html', info_data=info_data)
 
 @app.route('/login', methods=['GET', 'POST'])
 def loginPage():
 	if request.method == 'POST':
-		print("Form submitted via POST method")
 		user = request.form.get('username')
 		pswd = request.form.get('password')
 		persist = request.form.get('remember')
@@ -130,9 +131,9 @@ def loginPage():
 		if checkLogin(user, pswd):
 			print("User exists. Proceeding...")
 			if '@' in user:
-				mycur.execute("SELECT b.username, a.fname FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id AND a.email_add = \"{}\"".format(user))
+				mycur.execute("SELECT b.username, a.fname FROM adet_users INNER JOIN adet_user_data AS a JOIN adet_users AS b WHERE a.id = b.info_id AND a.email_add = \"{}\"".format(user))
 			else:
-				mycur.execute("SELECT b.username, a.fname FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id AND b.username = \"{}\"".format(user))
+				mycur.execute("SELECT b.username, a.fname FROM adet_users INNER JOIN adet_user_data AS a JOIN adet_users AS b WHERE a.id = b.info_id AND b.username = \"{}\"".format(user))
 			user = mycur.fetchone()
 			session['user'] = user[0]
 			session['fname'] = user[1]
@@ -156,7 +157,7 @@ def loginPage():
 			return render_template('login.html', dialogPrompt='not-logged-in')
 
 def checkLogin(user, password, checkType=0):
-	mycur.execute("SELECT b.id, b.username, a.email_add FROM users INNER JOIN user_data AS a JOIN users AS b WHERE a.id = b.info_id")
+	mycur.execute("SELECT b.id, b.username, a.email_add FROM adet_users INNER JOIN adet_user_data AS a JOIN adet_users AS b WHERE a.id = b.info_id")
 	users = mycur.fetchall()
 
 	usernames = [x[1] for x in users]
@@ -168,7 +169,7 @@ def checkLogin(user, password, checkType=0):
 				user_id = max([x[0] for x in users if x[2] == user])
 			else:
 				user_id = max([x[0] for x in users if x[1] == user])
-			mycur.execute(f"SELECT HEX(password) FROM users WHERE id = {user_id}")
+			mycur.execute(f"SELECT HEX(password) FROM adet_users WHERE id = {user_id}")
 			fetchedPassHash = mycur.fetchone()[0]
 			passHash = sha256(password.encode()).hexdigest()
 			
@@ -198,23 +199,23 @@ def registerPage():
 			return render_template('register.html', dialogPrompt='user-already-exists')
 		
 		# check if pre-existing user records match the user's details submitted (to assign its assigned id instead of adding another duplicate entry)
-		mycur.execute('SELECT * FROM user_data WHERE fname="{}" AND lname="{}" AND contact_no="{}" AND email_add="{}" AND address="{}"'.format(fname, lname, cnum, email, address))
+		mycur.execute('SELECT * FROM adet_user_data WHERE fname="{}" AND lname="{}" AND contact_no="{}" AND email_add="{}" AND address="{}"'.format(fname, lname, cnum, email, address))
 		matched = mycur.fetchall()
 		
 		if len(matched) >= 1:
 			user_data_id = matched[0][0]
 		else:
 			# add user info to table
-			query = "INSERT INTO `user_data` VALUES (NULL, %s, %s, %s, %s, %s, %s)"
+			query = "INSERT INTO `adet_user_data` VALUES (NULL, %s, %s, %s, %s, %s, %s)"
 			val = (fname, mname, lname, cnum, email, address)
 			mycur.execute(query, val)
 			mydb.commit()
 			
-			mycur.execute("SELECT COUNT(*) FROM user_data")
+			mycur.execute("SELECT COUNT(*) FROM adet_user_data")
 			user_data_id = mycur.fetchall()[0][0]
 		
 		# add user into table
-		query = "INSERT INTO `users` VALUES (NULL, %s, %s, %s)"
+		query = "INSERT INTO `adet_users` VALUES (NULL, %s, %s, %s)"
 		val = (username, sha256(password.encode()).digest(), user_data_id)
 		mycur.execute(query, val)
 		mydb.commit()
