@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            background-image: url('/static/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: rgba(189, 239, 226, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        label {
+            font-weight: bold;
+            color: #333;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #e734cc;
+            color: rgb(231, 158, 226);
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error-messages {
+            color: red;
+            font-weight: bold;
+        }
+        .greeting {
+            text-align: center;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <form action="/" method="POST">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" id="first_name" value="{{ user_data.get('first_name', '') }}">
+            {% if errors and errors.get('first_name') %}
+                <p class="error-messages">{{ errors['first_name'] }}</p>
+            {% endif %}
+            
+            <label for="middle_name">Middle Name:</label>
+            <input type="text" name="middle_name" id="middle_name" value="{{ user_data.get('middle_name', '') }}">
+            
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" id="last_name" value="{{ user_data.get('last_name', '') }}">
+            {% if errors and errors.get('last_name') %}
+                <p class="error-messages">{{ errors['last_name'] }}</p>
+            {% endif %}
+            
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" name="contact_number" id="contact_number" value="{{ user_data.get('contact_number', '') }}">
+            {% if errors and errors.get('contact_number') %}
+                <p class="error-messages">{{ errors['contact_number'] }}</p>
+            {% endif %}
+            
+            <label for="email_address">Email Address:</label>
+            <input type="email" name="email_address" id="email_address" value="{{ user_data.get('email_address', '') }}">
+            {% if errors and errors.get('email_address') %}
+                <p class="error-messages">{{ errors['email_address'] }}</p>
+            {% endif %}
+            
+            <label for="address">Address:</label>
+            <input type="text" name="address" id="address" value="{{ user_data.get('address', '') }}">
+            {% if errors and errors.get('address') %}
+                <p class="error-messages">{{ errors['address'] }}</p>
+            {% endif %}
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>

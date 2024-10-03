@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration & Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Registration Form at the top -->
+        <div class="form-container">
+            <h2>Registration Form</h2>
+            <form action="/" method="POST">
+                <label for="first_name">First Name:</label>
+                <input type="text" id="first_name" name="first_name" value="{{ user_data.get('first_name', '') }}" required>
+                {% if errors and errors.get('first_name') %}
+                    <span class="error">{{ errors['first_name'] }}</span>
+                {% endif %}
+
+                <label for="middle_name">Middle Name:</label>
+                <input type="text" id="middle_name" name="middle_name" value="{{ user_data.get('middle_name', '') }}">
+
+                <label for="last_name">Last Name:</label>
+                <input type="text" id="last_name" name="last_name" value="{{ user_data.get('last_name', '') }}" required>
+                {% if errors and errors.get('last_name') %}
+                    <span class="error">{{ errors['last_name'] }}</span>
+                {% endif %}
+
+                <label for="contact_number">Contact Number:</label>
+                <input type="text" id="contact_number" name="contact_number" value="{{ user_data.get('contact_number', '') }}" required>
+                {% if errors and errors.get('contact_number') %}
+                    <span class="error">{{ errors['contact_number'] }}</span>
+                {% endif %}
+
+                <label for="email_address">Email Address:</label>
+                <input type="email" id="email_address" name="email_address" value="{{ user_data.get('email_address', '') }}" required>
+                {% if errors and errors.get('email_address') %}
+                    <span class="error">{{ errors['email_address'] }}</span>
+                {% endif %}
+
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" value="{{ user_data.get('address', '') }}">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+                {% if errors and errors.get('password') %}
+                    <span class="error">{{ errors['password'] }}</span>
+                {% endif %}
+
+                <button type="submit">Register</button>
+            </form>
+        </div>
+
+        <!-- Divider -->
+        <hr>
+
+        <!-- Login Form at the bottom -->
+        <div class="login-container">
+            <h2>Already Registered? Login Here</h2>
+            <form action="/login" method="POST">
+                <label for="email_address">Email Address:</label>
+                <input type="email" id="login_email_address" name="email_address" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="login_password" name="password" required>
+
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
