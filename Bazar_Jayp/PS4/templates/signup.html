@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block title %}Application Development PS4{% endblock title %}
+
+{% block content %}
+  <div class="container w-50 h-100 py-3 my-4 rounded bg-light text-black" style="--bs-bg-opacity: 0.6;">
+    
+    <ul class="nav nav-tabs row align-items-center border-0">
+      <li class="nav-item text-center col">
+        <a class="nav-link fw-bold text-black border-0" href="/" role="tab" aria-controls="pills-home" aria-selected="false">Login</a>
+      </li>
+      <li class="nav-item text-center col">
+        <a class="nav-link active fw-bold text-black bg-transparent border-bottom-0" href="/signup" role="tab" aria-controls="pills-profile" aria-selected="true">Signup</a>
+      </li>
+    </ul>
+
+    <div class="pb-4 border rounded rounded-top-0">
+      <h3 class="text-center pt-3">Signup to CCCS 106</h3>
+      <hr>
+      <div class="row align-items-center">
+        <div class="col">
+        </div>
+        <div class="col-10">
+          <form action="/signup" method="post">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label for="inputFirstName" class="form-label">First name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control border-secondary" id="inputFirstName" name="fname" required>
+              </div>
+              <div class="col-md-4">
+                <label for="inputMiddleName" class="form-label">Middle Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control border-secondary" id="inputMiddleName" name="mname" required>
+              </div>
+              <div class="col-md-4">
+                <label for="inputLastName" class="form-label">Last name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control border-secondary" id="inputLastName" name="lname" required>
+              </div>
+              <div class="col-md-4">
+                <label for="inputContact" class="form-label">Contact Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control border-secondary" id="inputContact" maxlength="11" name="contact" required>
+              </div>
+              <div class="col-md-8">
+                <label for="inputEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control border-secondary" id="inputEmail" placeholder="example@gmail.com" name="email" required>
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword" class="form-label">Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control border-secondary" id="inputPassword" name="password" required>
+              </div>
+              <div class="col-md-6">
+                <label for="inputPassword2" class="form-label">Retype Password <span class="text-danger">*</span></label>
+                <input type="password" class="form-control border-secondary" id="inputPassword2" name="password2" required>
+              </div>
+              <div class="col-12">
+                <label for="inputAddress" class="form-label">Address <span class="text-danger">*</span></label>
+                <input type="text" class="form-control border-secondary" id="inputAddress" placeholder="San Nicolas(Pob), Nabua, Cam Sur" name="address" required>
+              </div>
+              <div class="d-grid col-3 mx-auto pt-3">
+                <button class="btn btn-primary rounded-pill" type="submit">Submit</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+{% endblock content %}
