@@ -1,0 +1,98 @@
+body {
+    background-image: url('../images/BG2.jpg'); 
+    background-size: 100%; 
+    background-repeat: no-repeat;
+    background-position: 350px;
+    background-color: #040207;
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    text-shadow: 
+    0 0 2px #fff,   
+}
+
+/* Flexbox Parent Container */
+.parent-container {
+    display: flex;
+    justify-content: flex-start;  /* Align content to the left */
+    align-items: flex-start;      /* Align content to the top */
+    padding: 0;                   /* Remove padding that might shift elements */
+    height: 100vh;                /* Full viewport height */
+    width: 100%;                  /* Full viewport width */
+}
+
+/* Styling for the container */
+.container-sm {
+    width: 30%;  
+    height: 50%;                
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;                
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(164, 164, 164, 0.344);
+    margin-top: 2%;  
+    margin-right: auto;
+    margin-left: 10%;      
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container-sm {
+        width: 90%;               /* Take more space on small screens */
+        margin-left: 0;           /* Align to the left on small screens */
+    }
+}
+
+
+/*Log-in Page CSS */
+.form-label {
+    font-size: 1.5rem; 
+}
+
+#login_header {
+    text-align: center;
+    top: 2%;
+    font: bold;
+    font-size: 300%;
+}
+
+#login_btn {
+    width: 90%;
+    font-size: 1.5rem;
+    background-color: rgb(41, 8, 125);
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    border: none; 
+    transition: background-color 0.3s; 
+    border-radius: 25px;
+}
+
+#login_btn:hover {
+    background-color: #39085d; 
+}
+
+p {
+    font-size: medium;
+    text-align: center;
+}
+
+#Acct_created {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fff;
+    padding: 5%;
+    display: flex;                 
+    justify-content: center;         
+    align-items: center;              
+    box-sizing: border-box;    
+    height: 20%;   
+    box-shadow: none;   
+}
+

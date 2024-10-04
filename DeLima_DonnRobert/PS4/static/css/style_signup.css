@@ -1,0 +1,98 @@
+body {
+    background-image: url('../images/Background.jpg'); 
+    background-size: 100%; 
+    background-color: #00121c;
+    background-repeat: no-repeat;
+    background-position: -350px; 
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: rgb(0, 0, 0);
+    text-shadow: 
+    0 0 2px #fff,   
+}
+
+/* Flexbox Parent Container */
+.parent-container {
+    display: flex;
+    justify-content: flex-start;  /* Align content to the left */
+    align-items: flex-start;      /* Align content to the top */
+    padding: 0;                   /* Remove padding that might shift elements */
+    height: 100vh;                /* Full viewport height */
+    width: 100%;                  /* Full viewport width */
+}
+
+/* Styling for the container */
+.container-sm {
+    width: 40%;  
+    height: 80%;                
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    padding-bottom: 20px;                /* Set equal padding */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(164, 164, 164, 0.344);
+    margin-top: 6%;
+    margin-left: auto;              
+    margin-right: 5%;           
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container-sm {
+        width: 90%;               /* Take more space on small screens */
+        margin-left: 0;           /* Align to the left on small screens */
+    }
+}
+
+
+/*Sign-Up Page CSS */
+.form-control {
+    border: 1px solid #00000040; 
+    border-radius: 5px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+    font-size: 1.3rem; 
+}
+
+.form-label {
+    font-size: 1.5rem; 
+}
+
+#error_message {
+    color: rgba(246, 103, 88, 0.805);
+}
+
+#heading {
+    text-align: center;
+    top: 2%;
+    font: bold;
+    font-size: 300%;
+}
+
+#submitBtn {
+    width: 90%;
+    border-radius: 25px;
+    font-size: 1.5rem;
+    background-color: rgb(1, 84, 22);
+    display: block;
+    margin: auto;
+    padding: 10px;
+    border: none; 
+    transition: background-color 0.3s; 
+}
+
+#submitBtn:hover {
+    background-color: #070875; 
+}
+
+p {
+    font-size: medium;
+    text-align: center;
+}
+
+
+
+

@@ -1,0 +1,83 @@
+body {
+    background-image: url('../images/BG3.jpg'); 
+    background-size: cover; 
+    height: 100vh; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin: 0; 
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+}
+
+h1 {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    margin-top: 20px; /* Add margin to create some space from the top */
+    font-size: 200px;
+}
+
+
+/* Styling for the container */
+.container {
+    display: flex;
+    width: auto;  
+    height: auto;                
+    background-color: rgba(0, 0, 0, 0.411);
+    padding: 30px;
+    padding-top: 10px;
+    padding-bottom: 20px;                
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(164, 164, 164, 0.344);   
+    font-size: 30px;  
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .container-sm {
+        width: 90%;               /* Take more space on small screens */
+        margin-left: 0;           /* Align to the left on small screens */
+    }
+}
+
+table {
+    margin-top: 2%;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    color: #ffffff;
+    text-align: center;
+}
+
+tbody {
+    color: #ffffff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+}
+
+th, td {
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #ffffff76; /* Optional: border for better visibility */
+}
+
+#logout_btn {
+    width: 90%;
+    font-size: 1.5rem;
+    background-color: rgb(178, 66, 1);
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    padding: 10px;
+    transition: background-color 0.3s; 
+    border-color: #ffffff;
+    border-radius: 15px;
+}
+
+#logout_btn:hover {
+    background-color: #25025a; 
+}
