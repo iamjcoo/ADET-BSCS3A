@@ -1,0 +1,42 @@
+[
+    {
+        "FIRSTNAME": "NERISA",
+        "MIDDLENAME": "SEGOTIER",
+        "LASTNAME": "VALLE",
+        "PHONE_NUMBER": "09101045861",
+        "HOME_ADDRESS": "Francia, Iriga CIty",
+        "EMAIL_ADDRESS": "nevalle@my.cspc.edu.ph"
+    },
+    {
+        "FIRSTNAME": "Clyden Jaile",
+        "MIDDLENAME": "Juarez",
+        "LASTNAME": "Ramirez",
+        "PHONE_NUMBER": "09123456789",
+        "HOME_ADDRESS": "Makati City",
+        "EMAIL_ADDRESS": "clydenjaile@gmail.com"
+    },
+    {
+        "FIRSTNAME": "Leon Ysmael",
+        "MIDDLENAME": "Alcazar",
+        "LASTNAME": "Zamora",
+        "PHONE_NUMBER": "09211346869",
+        "HOME_ADDRESS": "Manila, Philippines",
+        "EMAIL_ADDRESS": "leonysmael@gmail.com"
+    },
+    {
+        "FIRSTNAME": "NERISA",
+        "MIDDLENAME": "Juarez",
+        "LASTNAME": "Zamora",
+        "PHONE_NUMBER": "09211346869",
+        "HOME_ADDRESS": "Francia, Iriga CIty",
+        "EMAIL_ADDRESS": "nevalle@my.cspc.edu.ph"
+    },
+    {
+        "FIRSTNAME": "Nerisa Mae",
+        "MIDDLENAME": "Segotier",
+        "LASTNAME": "Valle",
+        "PHONE_NUMBER": "09101045861",
+        "HOME_ADDRESS": "Francia, Iriga City, Camarines Sur",
+        "EMAIL_ADDRESS": "vallenerisa09@gmail.com"
+    }
+]

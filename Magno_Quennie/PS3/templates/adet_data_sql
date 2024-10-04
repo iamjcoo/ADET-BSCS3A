@@ -1,0 +1,38 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1
+-- Generation Time: Sep 26, 2024 at 05:24 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
+
+-- Set SQL mode and transaction settings are not needed in MS SQL Server
+
+-- Database creation (if needed)
+-- CREATE DATABASE ps3;
+-- USE ps3;
+
+-- Table structure for table `users`
+USE mydatabase;
+CREATE TABLE users (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    first_name NVARCHAR(255) NOT NULL,
+    middle_name NVARCHAR(255) NOT NULL,
+    last_name NVARCHAR(255) NOT NULL,
+    contact_number NVARCHAR(255) NOT NULL UNIQUE,
+    email NVARCHAR(255) NOT NULL UNIQUE,
+    address NVARCHAR(MAX)
+);
+
+-- Dumping data for table `users`
+INSERT INTO users (first_name, middle_name, last_name, contact_number, email, address) VALUES
+('quennie', 'boringgot', 'magno', '0912345678', 'qumagno@my.cspc.edu.ph', 'Iriga City');
+
+-- Indexes for dumped tables
+-- Primary key is already defined in the table creation
+
+-- AUTO_INCREMENT for dumped tables
+-- IDENTITY property in the table creation handles auto-increment
+
+-- COMMIT is not needed in MS SQL Server for this script
