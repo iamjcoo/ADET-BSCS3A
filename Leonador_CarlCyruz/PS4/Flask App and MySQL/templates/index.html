@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %} {{ title }} {% endblock %}
+{% block title %} Dashboard {% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -9,9 +9,33 @@
 
 {% block content %}
     <div>
-    	<h1>Hi, {{ name }}!</h1>
+    	<h1>Hi, {{ info_data[0] }}!</h1>
         <p>Welcome to CCCS 106 - Applications Development and Emerging Technologies.</p>
-        <a href="{{ url_for('logout') }}"><button>LOG OUT</button></a><br/>
+        <div id="user-info">
+            <table>
+                <tr>
+                    <td>Username</td>
+                    <td>{{ info_data[5] }}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>{{ info_data[1] }}</td>
+                </tr>
+                <tr>
+                    <td>Contact #</td>
+                    <td>{{ info_data[2] }}</td>
+                </tr>
+                <tr>
+                    <td>Email Address</td>
+                    <td>{{ info_data[3] }}</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td>{{ info_data[4] }}</td>
+                </tr>
+            </table>
+        </div>
         <img src="{{ url_for('static', filename='assets/IMG_7061.jpg') }}" alt="cool image" title="Camarines Sur Polytechnic Colleges">
+        <a href="{{ url_for('logout') }}"><button>SIGN OUT</button></a><br/>
     </div>
 {% endblock %}

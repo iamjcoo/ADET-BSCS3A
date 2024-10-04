@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-{% block title %} Register {% endblock %}
+{% block title %} Sign Up {% endblock %}
 
 {% block styles %}
 {{ super() }}
@@ -11,7 +11,7 @@
 
 {% block content %}
 <div class="panel">
-	<h1>Register</h1>
+	<h1>Sign Up</h1>
 	<div class="register-form">
 		<form id="register" action="{{ url_for('registerPage') }}" method="POST">
 			<fieldset id="username-form">
@@ -67,7 +67,7 @@
 		</form>
 		<div id='form-prompt'></div>
 		<div id="r">
-			<button id='register-button' onclick='checkRegister()'>REGISTER</button>
+			<button id='register-button' onclick='checkRegister()'>SIGN UP</button>
 		</div>
 	</div>
 </div>

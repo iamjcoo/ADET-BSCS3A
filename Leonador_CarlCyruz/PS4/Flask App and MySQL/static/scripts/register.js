@@ -81,7 +81,7 @@ function checkRegister() {
 				addIcons();
 				
 				registerButton.removeChild(spinnerSVG);
-				registerButton.innerHTML = 'REGISTER';
+				registerButton.innerHTML = 'SIGN UP';
 			} else {
 				if (validateEmail(email)) {
 					if (agreed) {
@@ -118,7 +118,7 @@ function checkRegister() {
 						addIcons();
 						
 						registerButton.removeChild(spinnerSVG);
-						registerButton.innerHTML = 'REGISTER';
+						registerButton.innerHTML = 'SIGN UP';
 					}
 				} else {
 					document.getElementsByName('username')[0].classList.remove('invalid');
@@ -138,7 +138,7 @@ function checkRegister() {
 					addIcons();
 					
 					registerButton.removeChild(spinnerSVG);
-					registerButton.innerHTML = 'REGISTER';
+					registerButton.innerHTML = 'SIGN UP';
 				}
 			}
 		} else {
@@ -159,7 +159,7 @@ function checkRegister() {
 			addIcons();
 			
 			registerButton.removeChild(spinnerSVG);
-			registerButton.innerHTML = 'REGISTER';
+			registerButton.innerHTML = 'SIGN UP';
 		}
 	} else {
 		document.getElementsByName('username')[0].classList.add('invalid');
@@ -179,7 +179,7 @@ function checkRegister() {
 		addIcons();
 		
 		registerButton.removeChild(spinnerSVG);
-		registerButton.innerHTML = 'REGISTER';
+		registerButton.innerHTML = 'SIGN UP';
 	}
 }
 
