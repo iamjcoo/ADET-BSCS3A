@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, session
+from functools import wraps
 import mysql.connector
 import hashlib
 
@@ -20,6 +21,15 @@ def get_db_connection():
         database=db_config['database']
     )
     return conn
+
+# functools.wrap; protect from unauthorized access
+def login_required(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        if 'user_id' not in session:
+            return redirect(url_for('login'))  # Redirect to login if user is not authenticated
+        return f(*args, **kwargs)
+    return decorated_function
 
 # added a redirect for http://127.0.0.1:5000 to the login route
 @app.route('/')
@@ -96,10 +106,9 @@ def register():
     return render_template('register.html')
 
 @app.route('/dashboard')
+# calls login_required function
+@login_required
 def dashboard():
-    if 'user_id' not in session:
-        return redirect(url_for('login'))
-
     user_id = session['user_id']
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
