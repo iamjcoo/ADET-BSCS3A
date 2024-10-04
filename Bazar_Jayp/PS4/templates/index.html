@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}Application Development PS4{% endblock title %}
+
+{% block content %}
+  <div class="container w-50 h-100 py-3 my-4 rounded bg-light text-black" style="--bs-bg-opacity: 0.6;">
+
+    <ul class="nav nav-tabs row align-items-center border-0">
+        <li class="nav-item text-center col">
+          <a class="nav-link active fw-bold text-black bg-transparent border-bottom-0" href="/" role="tab" aria-controls="pills-home" aria-selected="true">Login</a>
+        </li>
+        <li class="nav-item text-center col">
+          <a class="nav-link fw-bold text-black border-0" href="/signup" role="tab" aria-controls="pills-profile" aria-selected="false">Signup</a>
+        </li>
+    </ul>
+
+    <div class="pb-4 border rounded rounded-top-0">
+      <h3 class="text-center pt-3">Login to CCCS 106</h3>
+      <hr>
+      <div class="row align-items-center">
+        <div class="col">
+        </div>
+        <div class="col-10">
+          <form action="/" method="post">
+            <div class="row g-3">
+              <div class="col-12">
+                <label for="inputEmail" class="form-label">Email</label>
+                <input type="email" class="form-control border-secondary" id="inputEmail" name="email" required>
+              </div>
+              <div class="col-12">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" class="form-control border-secondary" id="inputPassword" name="password" required>
+              </div>
+              <div class="d-grid col-3 mx-auto pt-3">
+                <button class="btn btn-primary rounded-pill" type="submit">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="col">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+{% endblock content %}
