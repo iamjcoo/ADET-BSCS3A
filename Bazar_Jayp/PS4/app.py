@@ -14,7 +14,7 @@ def login():
             conn = connectSQL()
             cursor = conn.cursor()
 
-            query = "SELECT * FROm adet_user WHERE Email = %s AND Password = %s"
+            query = "SELECT * FROM adet_user WHERE Email = %s AND Password = %s"
             values = (email, password)
 
             cursor.execute(query, values)
@@ -24,8 +24,6 @@ def login():
             if user:
                 session['user_email'] = email
                 session['user_name'] = user[1]
-
-                flash("Login successful!", "success")
 
                 return redirect(url_for('dashboard'))
             else:
@@ -49,7 +47,31 @@ def signup():
         contact_num = request.form.get('contact')
         email = request.form.get('email')
         password = encrypt(request.form.get('password'))
+        password2 = encrypt(request.form.get("password2"))
         address = request.form.get('address')
+
+        try:
+            conn = connectSQL()
+            cursor = conn.cursor()
+
+            query = "SELECT Email FROM adet_user"
+            cursor.execute(query)
+
+            email = email.lower()
+            emails = [row[0].lower() for row in cursor.fetchall()]
+
+            print(emails)
+
+            if email in emails: 
+                flash("Email already exists!", "danger")
+                return redirect(url_for('signup'))
+            
+        except Exception as e:
+            print(e)
+
+        if password != password2:
+            flash("Passwords do not match!", "danger")
+            return redirect(url_for('signup'))
 
         try:
             conn = connectSQL()
@@ -78,7 +100,21 @@ def signup():
 def dashboard():
     if 'user_name' in session:
         name = session['user_name']
-        return render_template('dashboard.html', name=name)
+        users = None
+        
+        try:
+            conn = connectSQL()
+            cursor = conn.cursor()
+
+            query = "SELECT ID, FirstName, MiddleName, LastName, ContactNumber, Email, Address FROM adet_user"
+            cursor.execute(query)
+
+            users = cursor.fetchall()
+
+        except Exception as e:
+            print(e)
+
+        return render_template('dashboard.html', name=name, users=users)
     else:
         flash("You must login first!", "danger")
         return redirect(url_for('login'))
