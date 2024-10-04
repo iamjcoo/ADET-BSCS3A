@@ -1,1 +1,0 @@
-Clores, Mark Angelo B. | BSCS 3A
