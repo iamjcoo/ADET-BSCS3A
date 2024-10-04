@@ -55,10 +55,10 @@
             })
             .then(response => {
                 if (response.ok) {
-                    // If logout is successful, redirect to login
-                    window.location.href = '/login'; // Change this to your login page URL
+                    // If logout is successful, redirect to login //
+                    window.location.href = '/login'; 
                     
-                    // Prevent back navigation
+                    // Prevent back navigation //
                     window.history.pushState(null, '', window.location.href);
                     window.onpopstate = function() {
                         window.history.pushState(null, '', window.location.href);
