@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Problem Set 1</title>
+    </head>
+    <body>
+        <h2>Welcome to Flask WebApp</h2>
+        <form method="POST" >
+            <label for="Name">Enter your Name:</label>
+            <input type="text" id="Name" name="Name"> <br>
+            <input type="submit" value="Enter">
+        </form>
+
+        {% if text %}
+        <h3>Hello World! {{ text }}, welcome to CCCS 106 - Applications Development and Emerging Technologies</h3>
+        {% endif %}
+    </body>
+</html>

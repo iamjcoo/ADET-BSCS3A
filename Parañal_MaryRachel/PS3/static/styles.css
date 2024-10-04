@@ -1,0 +1,83 @@
+body {
+    background-color: #f5f5fa; /* Softer light gray for a modern look */
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    background-color: #5a189a; /* Refined deep purple */
+    color: #ffffff;
+}
+
+.card-header {
+    background-color: #3c096c; /* Darker shade of deep purple */
+    border-bottom: none;
+}
+
+.card-body {
+    padding: 30px;
+    background-color: #ffffff; /* White background for better contrast */
+    color: #333333;
+}
+
+.form-label {
+    color: #5a189a; /* Matching the card background color */
+    font-weight: bold;
+}
+
+.form-control {
+    border: 1px solid #5a189a; /* Deep purple border */
+    border-radius: 5px;
+    background-color: #f8f8fc; /* Very light gray */
+    color: #333333;
+}
+
+.form-control:focus {
+    border-color: #3c096c; /* Darker purple on focus */
+    box-shadow: 0 0 5px rgba(60, 9, 108, 0.5); /* Subtle purple glow */
+}
+
+.btn-dark {
+    background-color: #3c096c; /* Deep purple */
+    border-color: #3c096c;
+}
+
+.btn-dark:hover {
+    background-color: #5a189a; /* Lighter purple on hover */
+}
+
+.text-danger {
+    color: #e63946; /* Softer red for required asterisk */
+}
+
+.btn {
+    border-radius: 5px;
+}
+
+h3 {
+    color: #ffffff;
+}
+
+/* Success Page Styling */
+.container h3, .container p {
+    color: #5a189a; /* Consistent with form colors */
+}
+
+.btn-primary {
+    background-color: #5a189a;
+    border-color: #5a189a;
+}
+
+.btn-primary:hover {
+    background-color: #3c096c;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
