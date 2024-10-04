@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+            background-color: #080710;
+            color: #ffffff;
+        }
+
+        form {
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            background-color: rgba(255, 255, 255, 0.13);
+            width: 400px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        label {
+            margin-right: 10px;
+            color: #e5e5e5;
+            width: 40%;
+        }
+
+        input {
+            width: 60%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.07);
+            color: #ffffff;
+        }
+
+        input::placeholder {
+            color: #e5e5e5;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #e5e5e5;
+        }
+
+        .login-message a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-message a:hover {
+            text-decoration: underline;
+        }
+
+        /* Flash message styling */
+        .flash-message {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            width: 400px;
+            text-align: center;
+        }
+
+        .success {
+            background-color: #d4edda; /* Light green background for success */
+            color: #155724; /* Dark green text for success */
+            border: 1px solid #c3e6cb; /* Border color for success */
+        }
+
+        .error {
+            background-color: #f8d7da; /* Light red background for errors */
+            color: #721c24; /* Dark red text for errors */
+            border: 1px solid #f5c6cb; /* Border color for errors */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Display flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="flash-message {{ category }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <h1>Register</h1>
+
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="middle_name">Middle Name:</label>
+            <input type="text" name="middle_name">
+        </div>
+        
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="contact_number">Contact Number:</label>
+            <input type="text" name="contact_number" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="email_address">Email:</label>
+            <input type="email" name="email_address" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" name="address" required>
+        </div>
+        
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" required>
+        </div>
+
+        <button type="submit">Register</button>
+    </form>
+    
+    <p class="login-message">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</body>
+</html>
