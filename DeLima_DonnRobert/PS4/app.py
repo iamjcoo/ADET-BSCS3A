@@ -143,6 +143,7 @@ def home_page():
     response.headers['Cache-Control'] = 'no-store'  # Prevent caching
     return response
 
+# -- Log Out Page -- #
 @app.route('/logout', methods=['POST'])
 def logout():
     session.pop('username', None)  # Remove the username from session
