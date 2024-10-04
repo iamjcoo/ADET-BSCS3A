@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 19, 2024 at 05:59 AM
+-- Generation Time: Oct 04, 2024 at 04:12 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -29,11 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adet_user` (
   `ID` int(11) NOT NULL,
-  `Firstname` varchar(50) NOT NULL,
+  `FirstName` varchar(50) NOT NULL,
   `MiddleName` varchar(50) NOT NULL,
   `LastName` varchar(50) NOT NULL,
   `ContactNumber` varchar(11) NOT NULL,
   `Email` varchar(100) NOT NULL,
+  `Password` varchar(255) NOT NULL,
   `Address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -41,8 +42,8 @@ CREATE TABLE `adet_user` (
 -- Dumping data for table `adet_user`
 --
 
-INSERT INTO `adet_user` (`ID`, `Firstname`, `MiddleName`, `LastName`, `ContactNumber`, `Email`, `Address`) VALUES
-(1, 'Jayp', 'Surara', 'Bazar', '09454523496', 'jabazar@my.cspc.edu.ph', 'San Felipe, Naga City, Camarines Sur');
+INSERT INTO `adet_user` (`ID`, `FirstName`, `MiddleName`, `LastName`, `ContactNumber`, `Email`, `Password`, `Address`) VALUES
+(1, 'Jayp', 'Surara', 'Bazar', '09123456789', 'jabazar@my.cspc.edu.ph', 'b03ddf3ca2e714a6548e7495e2a03f5e824eaac9837cd7f159c67b90fb4b7342', 'Naga City, Camarines Sur');
 
 --
 -- Indexes for dumped tables
