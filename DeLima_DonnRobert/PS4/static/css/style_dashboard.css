@@ -15,7 +15,7 @@ h1 {
     color: #ffffff;
     text-align: center;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
-    margin-top: 20px; /* Add margin to create some space from the top */
+    margin-top: 20px; 
     font-size: 200px;
 }
 
@@ -37,8 +37,8 @@ h1 {
 /* Media query for smaller screens */
 @media (max-width: 768px) {
     .container-sm {
-        width: 90%;               /* Take more space on small screens */
-        margin-left: 0;           /* Align to the left on small screens */
+        width: 90%;              
+        margin-left: 0;          
     }
 }
 
@@ -62,7 +62,7 @@ tbody {
 th, td {
     vertical-align: middle;
     padding: 10px;
-    border: 1px solid #ffffff76; /* Optional: border for better visibility */
+    border: 1px solid #ffffff76; 
 }
 
 #logout_btn {
