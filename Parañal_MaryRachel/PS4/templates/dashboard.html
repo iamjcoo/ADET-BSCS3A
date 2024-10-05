@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>Dashboard</h2>
+        <h3>Hello, {{ user[1] }}!</h3> <!-- Assuming user[1] is the first name -->
+        <table>
+            <tr>
+                <th>Field</th>
+                <th>Detail</th>
+            </tr>
+            <tr>
+                <td>First Name</td>
+                <td>{{ user[1] }}</td>
+            </tr>
+            <tr>
+                <td>Middle Name</td>
+                <td>{{ user[2] }}</td>
+            </tr>
+            <tr>
+                <td>Last Name</td>
+                <td>{{ user[3] }}</td>
+            </tr>
+            <tr>
+                <td>Contact Number</td>
+                <td>{{ user[4] }}</td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>{{ user[5] }}</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>{{ user[6] }}</td>
+            </tr>
+        </table>
+        <a href="/logout">Logout</a>
+    </div>
+</body>
+</html>
