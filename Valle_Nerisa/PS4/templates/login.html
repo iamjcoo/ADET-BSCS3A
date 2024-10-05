@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- For custom CSS -->
+    <link href="{{ url_for('static', filename='css/login.css') }}" rel="stylesheet">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-left">
+            <div class="login-header">
+                <h1>LOGIN TO YOUR ACCOUNT</h1>
+                <div class="social-login">
+                    <div class="social-btn fb-btn"></div>
+                    <div class="social-btn google-btn"></div>
+                    <div class="social-btn linkedin-btn"></div>
+                </div>
+            </div>
+
+            <!-- Flash messages for errors/success -->
+            {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                    <div class="alert-container">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} mt-3" role="alert">
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+            <form method="POST" action="/">
+                <div class="login-input">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="login-input">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn-signin">Sign In</button>
+            </form>
+        </div>
+
+        <div class="login-right">
+            <h2>New Here?</h2>
+            <p>Kindly sign up here and discover new opportunities!</p>
+            <a href="/register" class="btn-signup">REGISTER</a>
+        </div>
+    </div>
+</body>
+</html>

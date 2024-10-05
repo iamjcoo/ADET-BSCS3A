@@ -1,0 +1,133 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #7dc3e9;
+}
+
+.login-container {
+    display: flex;
+    background-color: white;
+    width: 60%;
+    height: 80%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.login-left {
+    flex: 1;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.login-header h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.social-btn {
+    font-size: 1.5rem;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    color: white;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fb-btn {
+    background-color: #4267B2;
+}
+
+.google-btn {
+    background-color: #DB4437;
+}
+
+.linkedin-btn {
+    background-color: #0077B5;
+}
+
+.login-input {
+    margin-bottom: 20px;
+}
+
+.login-input input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.btn-signin {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 25px;
+    background-color: #32dca0;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.btn-signin:hover {
+    background-color: #d3259f;
+}
+
+
+.login-right {
+    flex: 1;
+    background: linear-gradient(135deg, #32dca0, #34a0e3);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 8px 8px 0;
+}
+
+.login-right h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.login-right p {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.btn-signup {
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    background-color: white;
+    color: #34a0e3;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.btn-signup:hover {
+    background-color: #b7e9d8;
+}
+
