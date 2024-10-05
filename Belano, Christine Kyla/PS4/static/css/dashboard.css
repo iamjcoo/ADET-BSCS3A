@@ -1,0 +1,86 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    background-image: url('/static/img/back.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Georgia, 'Times New Roman', Times, serif !important;
+}
+
+/* Heading styling */
+h1 {
+    color: #f8f8f8f0;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 30px;
+}
+
+/* Card header styling */
+.card {
+    background-color: #0000000b;
+}
+.card-header {
+    background-color: #000000;
+    color: rgba(232, 225, 225, 0.881);
+    text-align: center;
+    font-size: 24px;
+}
+
+/* Table styling */
+.table {
+    background-color: #ffffff30;
+    color: #e6dddd;
+    border-radius: 8px;
+    margin-bottom: 5px;
+}
+
+.table th {
+    background-color: #000000;
+    color: rgba(228, 223, 223, 0.881);
+    text-align: center;
+    font-weight: bold;
+}
+
+.table td {
+    background-color: #fff9f900;
+    border: none;
+    color: #e6dddd;
+    text-align: left;
+}
+
+/* Button styling */
+.btn {
+    width: 200px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #181818f2;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #db3737;
+    border: none;
+}
+
+/* Button hover effects */
+.btn-primary:hover {
+    background-color: #000000;
+}
+
+.btn-danger:hover {
+    background-color: #a32020;
+}
