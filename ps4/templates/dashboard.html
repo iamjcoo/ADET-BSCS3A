@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;    
+            font-family: 'Roboto', sans-serif; /* Updated to Roboto for consistency */
+        }
+
+        body {
+            background: #111; /* Dark background color */
+            animation: backgroundAnimation 10s ease-in-out infinite; /* Background animation */
+            color: #ffffff; /* White text for visibility */
+            overflow: hidden; /* Prevents body scrolling */
+            position: relative; /* For positioning the starry background */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #111; }
+            50% { background-color: #222; }
+            100% { background-color: #111; }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://cdn.pixabay.com/photo/2018/01/14/19/02/space-3085017_1280.png') repeat top center; /* Starry background */
+            opacity: 0.8;
+            z-index: 1;
+            animation: moveStars 30s linear infinite; /* Stars movement */
+        }
+
+        @keyframes moveStars {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            z-index: 2; /* Ensure the container is above the stars */
+            position: relative; /* Allow positioning of the glowing background */
+        }
+
+        .dashboard {
+            background: rgba(255, 255, 255, 0.2); /* Slightly transparent white background */
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.5); /* Initial glow */
+            height: auto; /* Adjusted height for dynamic content */
+            width: 360px;    
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center elements horizontally */
+            justify-content: center; /* Center elements vertically */
+            border-radius: 15px; /* Rounded corners */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            padding: 20px; /* Padding for inner spacing */
+            text-align: center; /* Center text */
+            animation: colorChange 8s infinite alternate; /* Slowed color changing animation */
+        }
+
+        @keyframes colorChange {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red glow */
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); /* Blue glow */
+            }
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #00FF00; /* Green color for emphasis */
+            font-weight: 700;
+        }
+
+        p {
+            margin: 10px 0; /* Space between paragraphs */
+            color: #ffffff; /* White color for contrast */
+            background-color: rgba(76, 72, 157, 0.6); /* Semi-transparent background for emphasis */
+            padding: 10px; /* Padding around text */
+            border-radius: 5px; /* Rounded corners for the background */
+        }
+
+        a {
+            margin-top: 20px;
+            text-decoration: none;
+            background: linear-gradient(90deg, #00FF00, #009900); /* Bright green gradient button */
+            color: #111; /* Dark text for contrast */
+            padding: 10px 20px;
+            border-radius: 26px;
+            box-shadow: 0px 2px 2px rgba(0, 255, 0, 0.5); /* Green glowing effect */
+            transition: .3s;
+            font-weight: bold; /* Make the button text bold */
+        }
+
+        a:hover {
+            background: linear-gradient(90deg, #009900, #00FF00); /* Change gradient on hover */
+            box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.8); /* Brighter glow on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="stars"></div> <!-- Starry background -->
+    <div class="container">
+        <div class="dashboard">
+            <h2>Welcome, {{ first_name }} {{ middle_name }} {{ last_name }}</h2>
+            <p>Contact Number: {{ contact_number }}</p>
+            <p>Email: {{ email }}</p>
+            <p>Address: {{ address }}</p>
+            <a href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
