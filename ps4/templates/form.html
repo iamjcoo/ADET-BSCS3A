@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: #111; /* Dark background color */
+            animation: backgroundAnimation 10s ease-in-out infinite; /* Background animation */
+            position: relative; /* For positioning the starry background */
+            height: 100vh;
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #111; }
+            50% { background-color: #222; }
+            100% { background-color: #111; }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://cdn.pixabay.com/photo/2018/01/14/19/02/space-3085017_1280.png') repeat top center; /* Starry background */
+            opacity: 0.8;
+            z-index: 1;
+            animation: moveStars 30s linear infinite; /* Stars movement */
+        }
+
+        @keyframes moveStars {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative; /* Allow positioning of the glowing background */
+            z-index: 2; /* Ensure the container is above the stars */
+        }
+
+        .screen {
+            background: rgba(255, 255, 255, 0.2); /* Slightly transparent white background */
+            position: relative;
+            height: auto; /* Adjusted height for dynamic content */
+            width: 360px;
+            padding: 20px; /* Add padding to make space inside the screen */
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.5); /* Initial glow */
+            display: flex;
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center elements horizontally */
+            justify-content: flex-start; /* Align items to the top */
+            border-radius: 15px; /* Rounded corners */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            animation: colorChange 8s infinite alternate; /* Slowed color changing animation */
+        }
+
+        @keyframes colorChange {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); /* Blue glow */
+                border: 2px solid rgba(0, 0, 255, 0.7); /* Blue border */
+            }
+            33% {
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red glow */
+                border: 2px solid rgba(255, 0, 0, 0.7); /* Red border */
+            }
+            66% {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+                border: 2px solid rgba(0, 255, 0, 0.7); /* Green border */
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); /* Back to Blue glow */
+                border: 2px solid rgba(0, 0, 255, 0.7); /* Back to Blue border */
+            }
+        }
+
+        .screen__content {
+            z-index: 1;
+            position: relative;
+            height: 100%;
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            text-align: center; /* Center text */
+        }
+
+        h2 {
+            color: #00FF00; /* Green title */
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .registration {
+            width: 100%;
+            padding: 30px;
+            padding-top: 0; /* Removed padding-top to center vertically */
+        }
+
+        .registration__field {
+            padding: 20px 0px;
+            position: relative;
+        }
+
+        .registration__input {
+            border: none;
+            border-bottom: 2px solid #ffffff; /* White underline */
+            background: none;
+            padding: 10px;
+            padding-left: 24px;
+            font-weight: 700;
+            width: 100%; /* Full width */
+            color: #ffffff; /* White text for visibility */
+            transition: .3s;
+            border-radius: 5px; /* Rounded borders */
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+        }
+
+        .registration__input:focus,
+        .registration__input:hover {
+            outline: none;
+            border-bottom-color: #00FF00; /* Green glow on focus */
+            background-color: rgba(255, 255, 255, 0.3); /* Change background on focus */
+        }
+
+        .registration__submit {
+            background: linear-gradient(90deg, #00FF00, #009900); /* Bright green gradient button */
+            font-size: 14px;
+            margin-top: 30px;
+            padding: 16px 20px;
+            border-radius: 26px;
+            border: none; /* Remove border */
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: #111; /* Dark text for contrast */
+            box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.5); /* Green glowing effect */
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .registration__submit:hover {
+            background: linear-gradient(90deg, #009900, #00FF00); /* Change gradient on hover */
+            box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.8); /* Brighter glow on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 16px;
+            cursor: pointer;
+            width: 24px; /* Adjust size as needed */
+            height: 24px; /* Adjust size as needed */
+        }
+
+        .flash-messages {
+            list-style-type: none;
+            margin-top: 20px;
+            color: #ffffff; /* White color for visibility */
+        }
+
+        .flash-messages .error {
+            color: red; /* Error messages in red */
+        }
+
+        .flash-messages .success {
+            color: green; /* Success messages in green */
+        }
+    </style>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggle-icon");
+            const isPasswordVisible = passwordInput.type === "text";
+
+            passwordInput.type = isPasswordVisible ? "password" : "text";
+            toggleIcon.src = isPasswordVisible 
+                ? "https://img.icons8.com/material-outlined/24/00FF00/visible.png" 
+                : "https://img.icons8.com/material-outlined/24/00FF00/invisible.png";
+        }
+    </script>
+</head>
+<body>
+    <div class="stars"></div> <!-- Starry background -->
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <h2>Registration</h2>
+                <form method="POST" action="{{ url_for('submit_form') }}" class="registration">
+                    <div class="registration__field">
+                        <input type="text" class="registration__input" id="first_name" name="first_name" required placeholder="First Name">
+                    </div>
+                    <div class="registration__field">
+                        <input type="text" class="registration__input" id="middle_name" name="middle_name" placeholder="Middle Name">
+                    </div>
+                    <div class="registration__field">
+                        <input type="text" class="registration__input" id="last_name" name="last_name" required placeholder="Last Name">
+                    </div>
+                    <div class="registration__field">
+                        <input type="text" class="registration__input" id="contact_number" name="contact_number" required placeholder="Contact Number">
+                    </div>
+                    <div class="registration__field">
+                        <input type="email" class="registration__input" id="email" name="email" required placeholder="Email">
+                    </div>
+                    <div class="registration__field">
+                        <textarea class="registration__input" id="address" name="address" required placeholder="Address" rows="3"></textarea>
+                    </div>
+                    <div class="registration__field" style="position: relative;">
+                        <input type="password" class="registration__input" id="password" name="password" required placeholder="Password">
+                        <img id="toggle-icon" class="toggle-password" src="https://img.icons8.com/material-outlined/24/00FF00/invisible.png" onclick="togglePasswordVisibility()" alt="Toggle Password Visibility">
+                    </div>
+                    <button type="submit" class="registration__submit">Register</button>
+                </form>
+                <p style="color: #ffffff;">Already have an account? <a href="{{ url_for('login') }}" style="color: #00FF00;">Login here</a></p> <!-- Updated the endpoint -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, message in messages %}
+                      <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
