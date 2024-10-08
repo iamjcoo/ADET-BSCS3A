@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration Form</title>
+    <style>
+        body {
+            background-color: #4b4d4f; /* Pastel background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            flex-direction: column; /* Align items vertically */
+        }
+
+        .container {
+            background-color: #6a5087; /* Pastel container background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(9, 9, 9, 0.1);
+            width: 500px; /* Set a fixed width for the form */
+        }
+
+        h1 {
+            color: #0b0b0b; /* Dark gray heading */
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff; /* White labels */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+            margin-bottom: 15px;
+        }
+
+        input[type="submit"] {
+            background-color: #9c27b0; /* Purple button */
+            border-color: #9c27b0;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            width: 100%; /* Make the button span the width */
+        }
+
+        input[type="submit"]:hover {
+            background-color: #7b1fa2; /* Darker purple on hover */
+            border-color: #7b1fa2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <h1>Registration Form</h1>
+        <form method="POST" action="/">
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name" required><br><br>
+
+            <label for="middle_name">Middle Name:</label><br>
+            <input type="text" id="middle_name" name="middle_name"><br><br>
+
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" id="last_name" name="last_name" required><br><br>
+
+            <label for="contact_number">Contact Number:</label><br>
+            <input type="text" id="contact_number" name="contact_number" required><br><br>
+
+            <label for="email_address">Email Address:</label><br>
+            <input type="email" id="email_address" name="email_address" required><br><br>
+
+            <label for="address">Address:</label><br>
+            <textarea id="address" name="address" required></textarea><br><br>
+
+            <input type="submit" value="Register">
+        </form>
+    </div>
+</body>
+</html>
