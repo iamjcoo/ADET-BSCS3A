@@ -1,50 +1,37 @@
-from flask import Flask, render_template, request, jsonify
-import mysql.connector
+from flask import Flask, render_template, request
+import json
 
 app = Flask(__name__)
-config={'host':'localhost',
-        'user':'root',
-        'password':'',
-        'database':'ADET'}
-def connect_db():
-    conn = mysql.connector.connect(**config)
-    return conn
 
-@app.route('/')
+@app.route("/")
 def registration_form():
     return render_template('registration_form.html')
 
-@app.route('/submit', methods=['POST'])
-def submit_form():
-    first_name = request.form.get('first_name')
-    middle_name = request.form.get('middle_name')
-    last_name = request.form.get('last_name')
-    contact_number = request.form.get('contact_number')
-    email_address = request.form.get('email_address')
+@app.route("/greetings", methods=['POST', 'GET'])
+def hello():
+    if request.method == "POST":
+        first_name = request.form.get('first_name')
+        middle_name = request.form.get('middle_name')
+        last_name = request.form.get('last_name')
+        contact_num = request.form.get('contact_number')
+        email = request.form.get('email_address')
 
-    form_data = {
-        'First_Name': first_name,
-        'Middle_Name': middle_name,
-        'Last_Name': last_name,
-        'Contact_Number': contact_number,
-        'Email_Address': email_address
-    }
+        fullname = first_name + ' ' + middle_name + ' ' + last_name
 
-    conn = connect_db()
-    cursor = conn.cursor()
+        data = {
+            'firstname': first_name, 
+            'middlename': middle_name, 
+            'lastname': last_name, 
+            'contact': contact_num,
+            'email': email,
+            }
 
-    insert_query = """
-    INSERT INTO ADET_user (first_name, middle_name, last_name, contact_number, email_address)
-    VALUES (%s, %s, %s, %s, %s)
-    """
-    cursor.execute(insert_query, (first_name, middle_name, last_name, contact_number, email_address))
+        with open('Garcia.json', 'w') as js:
+            json.dump(data, js)
 
-    conn.commit()
-
-    cursor.close()
-    conn.close()
-
-    return jsonify({"message": "Registration successful!", "data": form_data})
+        return render_template('registration_form.html', name=fullname)
+    
+    return render_template('registration_form.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

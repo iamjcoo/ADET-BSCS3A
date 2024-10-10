@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h2>Hello, {{ first_name }}</h2>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Email Address</th>
+        </tr>
+        <tr>
+            <td>{{ user_details.first_name }}</td>
+            <td>{{ user_details.middle_name }}</td>
+            <td>{{ user_details.last_name }}</td>
+            <td>{{ user_details.contact_number }}</td>
+            <td>{{ user_details.email_address }}</td>
+        </tr>
+    </table>
+    <br>
+    <a href="/logout">Logout</a>
+</body>
+</html>
