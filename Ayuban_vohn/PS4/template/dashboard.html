@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<style>
+  body {
+      background-color: #ebeef1; /* Pastel background */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      flex-direction: column; /* Align items vertically */
+  }
+
+  .container {
+      background-color: #6a5087; /* Pastel container background */
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(9, 9, 9, 0.1);
+      width: 500px; /* Set a fixed width for the form */
+  }
+
+  h1 {
+      color: #0b0b0b; /* Dark gray heading */
+      text-align: center;
+      margin-bottom: 30px;
+  }
+
+  label {
+      display: block;
+      margin-bottom: 5px;
+      color: #ffffff; /* White labels */
+  }
+
+  input[type="text"],
+  input[type="email"],
+  textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      box-sizing: border-box;
+      margin-bottom: 15px;
+  }
+
+  input[type="submit"] {
+      background-color: #9c27b0; /* Purple button */
+      border-color: #9c27b0;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+      width: 100%; /* Make the button span the width */
+  }
+
+  input[type="submit"]:hover {
+      background-color: #7b1fa2; /* Darker purple on hover */
+      border-color: #7b1fa2;
+  }
+</style>
+<body>
+    <h1>Hello, {{ first_name }}!</h1>
+    <table border="1">
+        <tr>
+            <th>First Name</th>
+            <th>Middle Name</th>
+            <th>Last Name</th>
+            <th>Contact Number</th>
+            <th>Email Address</th>
+            <th>Address</th>
+        </tr>
+        <tr>
+            <td>{{ user_details[0] }}</td>
+            <td>{{ user_details[1] }}</td>
+            <td>{{ user_details[2] }}</td>
+            <td>{{ user_details[3] }}</td>
+            <td>{{ user_details[4] }}</td>
+            <td>{{ user_details[5] }}</td>
+        </tr>
+    </table>
+    <a href="/logout">Logout</a>
+</body>
+</html>

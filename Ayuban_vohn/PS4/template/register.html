@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<style>
+    body {
+        background-color: #4b4d4f; /* Pastel background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        flex-direction: column; /* Align items vertically */
+    }
+
+    .container {
+        background-color: #6a5087; /* Pastel container background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(9, 9, 9, 0.1);
+        width: 500px; /* Set a fixed width for the form */
+    }
+
+    h1 {
+        color: #0b0b0b; /* Dark gray heading */
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    label {
+        display: block;
+        margin-bottom: 5px;
+        color: #ffffff; /* White labels */
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+        margin-bottom: 15px;
+    }
+
+    input[type="submit"] {
+        background-color: #9c27b0; /* Purple button */
+        border-color: #9c27b0;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        width: 100%; /* Make the button span the width */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #7b1fa2; /* Darker purple on hover */
+        border-color: #7b1fa2;
+    }
+</style>
+<body>
+    <h1>Register</h1>
+    <form action="/register" method="POST">
+        <label for="first_name">First Name:</label>
+        <input type="text" id="first_name" name="first_name" required><br>
+
+        <label for="middle_name">Middle Name:</label>
+        <input type="text" id="middle_name" name="middle_name"><br>
+
+        <label for="last_name">Last Name:</label>
+        <input type="text" id="last_name" name="last_name" required><br>
+
+        <label for="contact_number">Contact Number:</label>
+        <input type="text" id="contact_number" name="contact_number" required><br>
+
+        <label for="email_address">Email Address:</label>
+        <input type="email" id="email_address" name="email_address" required><br>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"><br>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br>
+
+        <input type="submit" value="Register">
+    </form>
+    <a href="/login">Already have an account? Login here</a>
+
+    <!-- Check if there is an error passed from the server-side -->
+    {% if error %}
+    <script>
+        alert("{{ error }}");
+    </script>
+    {% endif %}
+</body>
+</html>
