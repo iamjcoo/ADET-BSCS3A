@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="static/design.css">
+    <title>Authentication</title>
+</head>
+
+<body data-active-signup="{{ 'true' if signup_error else 'false' }}">
+
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form action="{{ url_for('signUp') }}" method="POST" id="register-form" onsubmit="return validateForm()">
+                <h1>Create Account</h1>
+                <span>or use your email for registration</span>
+                <input type="text" id="fname" name="fname" class="form-control" placeholder="Name" required>
+                <input type="text" id="mname" name="mname" class="form-control" placeholder="Middle Name">
+                <input type="text" id="lname" name="lname" class="form-control" placeholder="Last Name">
+                <input type="text" id="num" name="num" class="form-control" placeholder="Cellphone Number" required>
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required>
+                <input type="text" id="address" name="address" class="form-control" placeholder="Address" required>
+                <div style="display: flex; align-items: center; width: 100%;">
+                    <input type="password" id="password" name="password" class="form-control" placeholder="Password" style="flex: 9; width: auto;" required>
+                    <input type="checkbox" id="show-password" onclick="togglePasswordVisibility()" style="flex: 1; margin-left: 10px;">
+                </div>
+                {% if signup_error %}
+                    <div style="color: red; text-align: center; margin: 2px 0;">{{ signup_error }}</div>
+                {% endif %}
+                <div id="error" style="color: red; text-align: center; margin: 10px 0;"></div>
+                <button type="submit" id="signup">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="{{ url_for('signIn') }}" method="POST">
+                <h1>Sign In</h1>
+                <span>or use your email password</span>
+                <input type="email" name="email" placeholder="Email" required>
+                <div style="display: flex; align-items: center; width: 100%;">
+                    <input type="password" name="password" id="signin-password" placeholder="Password" required style="flex: 9; width: auto;">
+                    <input type="checkbox" id="show-signin-password" style="flex: 1; margin-left: 10px;">
+                </div>
+                {% if signin_error %}
+                    <div style="color: red; text-align: center;">{{ signin_error }}</div>
+                {% endif %}
+                <button type="submit" id="signin">Sign In</button>
+            </form>
+        </div>
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1>Welcome Back!</h1>
+                    <p>Enter your personal details to use all of site features</p>
+                    <button class="hidden" id="login">Sign In</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1>Hello, Friend!</h1>
+                    <p>Register with your personal details to use all of site features</p>
+                    <button class="hidden" id="register">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    //const existingEmails = {{ existing_emails | tojson | safe if existing_emails else '[]' }};
+    //console.log(existingEmails); 
+
+    const container = document.getElementById('container');
+    const registerBtn = document.getElementById('register');
+    const loginBtn = document.getElementById('login');
+
+    // Automatically switch to sign-up if there's an error
+    if (document.body.getAttribute('data-active-signup') === 'true') {
+        container.classList.add("active");
+    }
+
+    registerBtn.addEventListener('click', () => {
+        container.classList.add("active");
+    });
+
+    loginBtn.addEventListener('click', () => {
+        container.classList.remove("active");
+    });
+
+    function togglePasswordVisibility() {
+        const passwordInput = document.getElementById("password");
+        const showPasswordCheckbox = document.getElementById("show-password");
+        passwordInput.type = showPasswordCheckbox.checked ? "text" : "password";
+    }
+    document.getElementById('show-signin-password').addEventListener('change', function() {
+        const passwordInput1 = document.getElementById('signin-password');
+        passwordInput1.type = this.checked ? 'text' : 'password';
+    });
+
+
+    function validateForm() {
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const errorElement = document.getElementById('error');
+    errorElement.textContent = ""; // Reset error message
+
+    // First, check for password length
+    if (password.length < 8) {
+        errorElement.textContent = "Password must be at least 8 characters long.";
+        return false; // Prevent form submission
+    }
+
+    else if (existingEmails.includes(email)) {
+            errorElement.textContent = "An account with this email already exists.";
+            return false; // Prevent form submission
+    }
+    return true
+} 
+    </script>
+</body>
+
+</html>
+
