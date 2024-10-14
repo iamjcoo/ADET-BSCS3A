@@ -116,7 +116,7 @@ def index():
 	if user == None:
 		return redirect(url_for('loginPage'))
 	else:
-		mycur.execute("SELECT CONCAT(a.fname, a.fname, ' ', a.mname, ' ', a.lname) as name, a.contact_no, a.email_add, a.address, b.username FROM adet_user_data INNER JOIN adet_users as b JOIN adet_user_data as a WHERE b.username='%s'" % user)
+		mycur.execute("SELECT CONCAT(a.fname, ' ', a.mname, ' ', a.lname) as name, a.contact_no, a.email_add, a.address, b.username FROM adet_user_data INNER JOIN adet_users as b JOIN adet_user_data as a WHERE b.username='%s'" % user)
 		info_data = mycur.fetchone()
 		return render_template('index.html', info_data=info_data)
 
