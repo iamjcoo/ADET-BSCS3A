@@ -1,0 +1,166 @@
+/* Style for the entire page */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-image: url('your-gif.gif'); /* Your background GIF */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;   /* Horizontally center the form */
+    align-items: center;       /* Vertically center the form */
+}
+
+/* Centered form container */
+form {
+    background-color: rgba(255, 255, 255, 0.7); /* More transparent background */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Optional: Add a shadow to the form */
+    width: 350px;  /* Adjust width as needed */
+    text-align: center;  /* Center content inside the form */
+}
+
+/* Styling for form fields */
+form div {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.85); /* Slightly transparent input fields */
+}
+
+/* Button group styling */
+.button-group {
+    display: flex;
+    justify-content: space-between;  /* Evenly space the buttons */
+}
+
+input[type="submit"],
+input[type="reset"],
+button {
+    width: 30%; /* Each button takes up 30% of the space */
+    padding: 10px;
+    margin-top: 15px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="reset"] {
+    background-color: #dc3545;  /* Red for reset button */
+}
+
+button {
+    background-color: #007bff; /* Blue for Sign Up button */
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover,
+button:hover {
+    background-color: #218838;
+}
+
+input[type="reset"]:hover {
+    background-color: #c82333;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* Signup form specific styles */
+.signup-form {
+    font-family: 'Arial', sans-serif;  /* Use your desired font */
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Buttons in the signup form */
+.button-group {
+    margin-top: 20px;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    width: 48%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="reset"] {
+    background-color: #dc3545;
+}
+
+input[type="submit"]:hover {
+    background-color: #218838;
+}
+
+input[type="reset"]:hover {
+    background-color: #c82333;
+}
+
+/* Dashboard container styles */
+.dashboard-container {
+    max-width: 600px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    padding: 20px; /* Add padding inside the container */
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2); /* Shadow for depth */
+}
+
+/* Styling for headings and paragraphs in the dashboard */
+.dashboard-container h1 {
+    text-align: center; /* Center the heading */
+}
+
+.dashboard-container p {
+    margin: 10px 0; /* Add vertical spacing between paragraphs */
+}
