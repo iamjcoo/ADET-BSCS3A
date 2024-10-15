@@ -1,0 +1,2 @@
+INSERT INTO adet_user (first_name, middle_name, last_name, contact_number, email_address, address) VALUES ('eddie', 'eddie', 'munson', '09203013212', 'masanandres@my.cspc.edu.ph', 'Iraya, Buhi, Cam. Sur');
+INSERT INTO adet_user (first_name, middle_name, last_name, contact_number, email_address, address) VALUES ('hanna', 'lustiano', 'penales', '09203013212', 'halustiano@my.cspc.edu.ph', 'La Trinidad');
