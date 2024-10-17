@@ -1,0 +1,51 @@
+body{
+    background-image: url('../images/images.jpg'); 
+    background-size: cover;
+    font-family: 'arial';
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #fff; 
+}
+body {
+    background-image: url('../images/images.jpg'); 
+    background-size: cover; /* Ensures the background image covers the entire area */
+    color: #fff; /* Sets the text color to white */
+    font-family: 'Arial', sans-serif; /* Specifies the font family */
+    font-size: 16px; /* Sets the font size */
+    line-height: 1.5; /* Adjusts line height for better readability */
+    text-align: center; /* Centers the text alignment */
+}
+
+h1, h2, label, th, td {
+    color: #fff; /* Ensures all headings, labels, and table text are white */
+}
+
+.table {
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for the table */
+    border-radius: 5px; /* Rounded corners for the table */
+}
+
+input {
+    background-color: rgba(255, 255, 255, 0.2); /* Light background for input fields */
+    border: 1px solid #fff; /* White border for input fields */
+    color: #fff; /* Text color inside input fields */
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary button color */
+    border: none; /* Removes border */
+}
+
+.btn-primary:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
+
+.btn-warning {
+    background-color: #ffc107; /* Bootstrap warning button color */
+    border: none; /* Removes border */
+}
+
+.btn-warning:hover {
+    background-color: #e0a800; /* Darker shade on hover */
+}
