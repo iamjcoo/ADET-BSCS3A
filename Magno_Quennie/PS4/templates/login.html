@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <title>Login Page</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>   
+
+    <style>
+        body {
+            font-family: 'Open Sans', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('/static/42619.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+        }
+
+        .login-container {
+            width: 90%; /* Adjust to 90% of the viewport width */
+            max-width: 400px; /* Max width for larger screens */
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+            padding: 30px 25px; /* Adjusted padding */
+            border-radius: 30px;
+            box-shadow: 0px 0px 20px rgb(253, 253, 253);
+            border: 2px solid #f8f8f8;
+            text-align: center;
+            box-sizing: border-box; /* Includes padding in width calculations */
+        }
+
+        .login-container .icon {
+            font-size: 6rem;
+            color: #ffffff;
+            margin-bottom: 10px; /* Adjust spacing */
+        }
+
+        .login-container h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .login-container label {
+            color: #ffffff;
+            display: block;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .input-container {
+            position: relative;
+            margin: 15px 0;
+        }
+
+        .input-container i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #ffffff;
+        }
+
+        .login-container input {
+            width: 100%;
+            padding: 10px 10px 15px 1px;
+            margin: 0;
+            border: 1px solid #ffffff;
+            border-radius: 5px;
+            outline: none;
+            background-color: transparent;
+            color: #ffffff;
+            border-radius: 20px;
+            text-align: sw; /* Center the text */
+        }
+
+        .login-container input:focus {
+            background-color: rgba(255, 255, 255, 0.295);
+        }
+
+        .login-container button {
+            width: 100%;
+            padding: 15px;
+            background-color: #4b5caa;
+            border: none;
+            color: #f3f3f3;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 20px;
+            border-radius: 20px;
+        }
+
+        .login-container button:hover {
+            background-color: #003f83;
+        }
+
+        .error-message {
+            color: red;
+            text-align: center;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Register link styling */
+        .login-container .register-link {
+            color: #ffffff;
+            margin-top: 15px;
+            font-size: 15px; 
+            display: block;
+        }
+
+        .login-container .register-link a {
+            color: #48cbe2;
+            font-size: 15px; 
+            text-decoration: none;
+        }
+
+        .login-container .register-link a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <i class='bx bxs-user-circle icon'></i>
+        <h2>Login</h2>
+        <p class="error-message" id="error-message">Invalid username or password</p>
+        <form id="login-form" action="{{ url_for('login') }}" method="post"></form>
+            <label for="username">Username (Email):</label>
+            <div class="input-container">
+                <i class='bx bxs-user'></i>
+                <input type="text" id="username" name="username" required>
+            </div>
+
+            <label for="password">Password:</label>
+            <div class="input-container">
+                <i class='bx bxs-lock-alt'></i>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+
+        <!-- Register link -->
+        <div class="register-link">
+            Don't have an account? <a href="{{ url_for('index') }}">Register here</a>
+        </div>
+    </div>
+</body>
+</html>

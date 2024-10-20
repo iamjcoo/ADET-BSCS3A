@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        html, body {
+            height: 100%; /* Ensure the body takes the full height */
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            background-image: url('/static/Wallpaper_-_43.jpg');
+            background-repeat: no-repeat;
+            background-size: cover; /* Ensure the image covers the entire background */
+            background-position: center; /* Center the image */
+        }
+        .flex-container {
+            display: flex; /* Enable flexbox layout */
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            height: 100vh; /* Full height of the viewport */
+        }
+        .container {
+            background-color: rgba(255, 255, 255, 0.027); /* Semi-transparent background for the table */
+            padding: 30px; /* Adjusted padding */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 0px 8px rgb(255, 255, 255), 0 6px 20px rgb(0, 0, 0); /* Enhanced shadow for depth */
+            max-width: 100%; /* Use full width */
+            width: 90%; /* Make the container flexible */
+            margin: 20px auto; /* Center the container and add margin */
+            box-sizing: border-box; /* Ensure padding is included in width */
+            font-size: 18px; /* Slightly smaller font size */
+            border: 2px solid rgba(255, 255, 255, 0.822); /* Slightly lighter border */
+        }
+        h2 {
+            margin-top: 20px;
+            color: #000000; /* Dark text for better visibility */
+        }
+        table {
+            width: 100%; /* Ensure the table takes the full width of its container */
+            table-layout: auto; /* Allow columns to adjust based on content */
+            border-collapse: collapse; /* Merge table borders */
+        }
+        table th, table td {
+            padding: 10px; /* Adjusted padding for better spacing */
+            text-align: center; /* Center text inside table cells */
+            border: 1px solid rgba(255, 255, 255, 0.5); /* Light border for table cells */
+            color: #ffffff; /* White text for visibility */
+        }
+        table th {
+            background-color: rgba(0, 0, 0, 0.6); /* Dark background for headers */
+        }
+        table td {
+            background-color: rgba(0, 0, 0, 0.3); /* Slightly lighter background for table data */
+        }
+        .greeting {
+            font-size: 40px; /* Larger font for greeting */
+            color: #ffffff; /* White text for better visibility */
+            margin-bottom: 20px; /* Space between greeting and table */
+            text-align: center; /* Center the greeting */
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="container">
+            <!-- Personalized greeting message -->
+            <div class="greeting">
+                Hello, {{ user.first_name }}!
+            </div>
+
+            <!-- User details table -->
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Contact Number</th>
+                        <th>Email Address</th>
+                        <th>Address</th>
+                        <th>Timestamp</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Display user details, but omit the password field -->
+                    <tr>
+                        <td>{{ user.first_name }}</td>
+                        <td>{{ user.middle_name }}</td>
+                        <td>{{ user.last_name }}</td>
+                        <td>{{ user.contact_number }}</td>
+                        <td>{{ user.email_address }}</td>
+                        <td>{{ user.address }}</td>
+                        <td>{{ user.timestamp }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
