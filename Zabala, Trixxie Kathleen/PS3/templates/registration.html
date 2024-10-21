@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        .container {
+            align-content: center;
+            left:50px;
+            top: 73px;
+            width: 400px;
+            height: 400px;
+            background-color: lightgreen;
+            text-align: center;
+            position:inherit;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Registration Form</h1>
+            <form action="/register" method="post">
+                <label for="firstname">First name:</label>
+                <input type="text" id="firstname" name="firstname" required>
+                <br>
+                <label for="middlename">Middle name:</label>
+                <input type="text" id="middlename" name="middlename">
+                <br>
+                <label for="lastname">Last name:</label>
+                <input type="text" id="lastname" name="lastname" required>
+                <br>
+                <label for="contact">Contact Number:</label>
+                <input type="text" id="contact" name="contact" required>
+                <br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <br>
+                <label for="address">Address:</label>
+                <input type="text" name="address" id="address" required>
+                <br>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+</div>
+</body>
+</html>
