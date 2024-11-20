@@ -1,0 +1,114 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f2f2f2; /* Light gray background */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full viewport height */
+    text-align: center; /* Center text in the body */
+}
+
+.container {
+    max-width: 450px;
+    width: 100%;
+    margin: 20px; /* Space around the container */
+    padding: 30px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* Animation on hover */
+}
+
+.container:hover {
+    transform: scale(1.02); /* Slight scaling effect on hover */
+}
+
+/* Headings */
+h2 {
+    color: #4b0082; /* Indigo */
+    font-size: 2em; /* Larger font size */
+    margin-bottom: 20px; /* Space below heading */
+}
+
+h3 {
+    color: #333;
+    margin: 10px 0; /* Space around greeting */
+}
+
+/* Form Input Styles */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: calc(100% - 24px); /* Adjusted width to consider padding */
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Button Styles */
+button {
+    background-color: #4b0082; /* Indigo */
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px; /* Larger font size */
+    transition: background-color 0.3s ease; /* Animation on hover */
+}
+
+button:hover {
+    background-color: #6a0dad; /* Darker indigo */
+}
+
+/* Flash Messages */
+.flashes {
+    list-style-type: none;
+    padding: 0;
+}
+
+.error {
+    color: red;
+    background-color: #ffdddd; /* Light red background */
+    padding: 12px;
+    border: 1px solid red;
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space below error message */
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #4b0082; /* Indigo */
+    color: white;
+}
+
+/* Link Styles */
+a {
+    text-decoration: none;
+    color: #4b0082; /* Indigo */
+    display: block;
+    margin-top: 20px;
+    font-weight: bold; /* Bold links */
+}
+
+a:hover {
+    color: #6a0dad; /* Darker indigo on hover */
+}
