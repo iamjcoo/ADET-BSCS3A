@@ -1,0 +1,45 @@
+{% extends "_base.html" %}
+{% block title %}Web | Dashboard{% endblock %} 
+
+{% block body %}
+<div class="container">
+    <h1 class="text-center">User Dashboard</h1>
+    <h2>Hello, {{ user_details['FirstName'] }}!</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>ContactNum</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ user_details['Email'] }}</td>
+                <td>{{ user_details['FirstName'] }}</td>
+                <td>{{ user_details['LastName'] }}</td>
+                <td>{{ user_details['ContactNumber'] }}</td>
+                <td>{{ user_details['Address'] }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a class="btn btn-danger" style="color: white; background-color: red;" href="/logout">Logout</a>
+    </div>
+</div>
+
+<!-- Logout Function -->
+<script>
+    window.history.pushState(null, null, window.location.href);
+    window.onpopstate = function () {
+        window.history.pushState(null, null, window.location.href);
+    };
+
+    window.addEventListener('beforeunload', function(event) {
+        fetch('/logout', { method: 'POST' });
+    });
+</script>
+{% endblock %}
