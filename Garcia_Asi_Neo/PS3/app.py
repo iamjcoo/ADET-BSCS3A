@@ -5,7 +5,7 @@ app = Flask(__name__)
 config={'host':'localhost',
         'user':'root',
         'password':'',
-        'database':'ADET'}
+        'database':'adet'}
 def connect_db():
     conn = mysql.connector.connect(**config)
     return conn
@@ -34,7 +34,7 @@ def submit_form():
     cursor = conn.cursor()
 
     insert_query = """
-    INSERT INTO ADET_user (first_name, middle_name, last_name, contact_number, email_address)
+    INSERT INTO adet_user (first_name, middle_name, last_name, contact_number, email_address)
     VALUES (%s, %s, %s, %s, %s)
     """
     cursor.execute(insert_query, (first_name, middle_name, last_name, contact_number, email_address))
