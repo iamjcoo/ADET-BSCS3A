@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Login</title>
+    <style>
+        .password-container {
+            position: relative;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login</h1>
+    </header>
+    <div class="container">
+        <form action="{{ url_for('login') }}" method="POST" autocomplete="off">
+            <label>Email Address:</label>
+            <input type="email" name="email_address" value="" autocomplete="off" required><br>
+
+            <label>Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" name="password" autocomplete="new-password" required>
+            </div><br>
+
+            <button type="submit">Login</button>
+        </form>
+
+        {% if errors %}
+            <ul class="error-list">
+                {% for field, error in errors.items() %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
