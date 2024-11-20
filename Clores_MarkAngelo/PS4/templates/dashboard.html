@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dashboard</title>
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+        <link href="{{ url_for('static', filename='dash_styles.css') }}" rel="stylesheet">
     </head>
     <body>
         <div class="container mt-5">
@@ -37,7 +37,21 @@
             <a href="/logout" class="btn btn-danger">Logout</a>
         </div>
 
+        <!-- logout script -->
+        <script>
+            window.history.pushState(null, null, window.location.href);
+            window.onpopstate = function () {
+                window.history.pushState(null, null, window.location.href);
+            };
+            
+            // optional event listener on logout click
+            window.addEventListener('beforeunload', function(event) {
+                fetch('/logout', { method: 'POST' });
+            });
+        </script>
+
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     </body>
 </html>
