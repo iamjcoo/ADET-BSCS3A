@@ -5,27 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.ccs">
+    <link rel="stylesheet" href="../static/css/style.css">
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container mt-3">
         <h2>Registration Form</h2>
-        <form id="registrationForm" action="{{ url_for('submit') }}" method="POST">
+        <form id="registrationForm" action="{{ url_for('register') }}" method="POST">
             <div class="mb-3">
                 <label for="firstName" class="form-label">First Name</label>
-                <input type="text" class="form-control" id="firstName" name="firstname" placeholder="Enter first name" required>
+                <input type="text" class="form-control" id="firstName" name="first_name" placeholder="Enter first name" required>
             </div>
             <div class="mb-3">
-                <label for="midName" class="form-label">Middle Name</label>
-                <input type="text" class="form-control" id="midName" name="middlename" placeholder="Enter middle name">
+                <label for="midName" class="form-label" style="color: white;">Middle Name</label>
+                <input type="text" class="form-control" id="midName" name="middle_name" placeholder="Enter middle name">
             </div>
             <div class="mb-3">
                 <label for="lastName" class="form-label">Last Name</label>
-                <input type="text" class="form-control" id="lastName" name="lastname" placeholder="Enter last name" required>
+                <input type="text" class="form-control" id="lastName" name="last_name" placeholder="Enter last name" required>
             </div>
             <div class="mb-3">
                 <label for="contactNum" class="form-label">Contact Number</label>
-                <input type="tel" class="form-control" id="contactNum" name="cpnum" placeholder="Enter contact number" required>
+                <input type="tel" class="form-control" id="contactNum" name="contact" placeholder="Enter contact number" required>
             </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address</label>
@@ -35,9 +35,13 @@
                 <label for="address" class="form-label">Address</label>
                 <input type="text" class="form-control" id="address" name="address" placeholder="Enter address" required>
             </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Email Address</label>
+                <input type="password" class="form-control" id="password" name="password" placeholder="password" required>
+            </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        <p id="resultMessage" class="mt-3"></p>
     </div>
 </body>
 </html>
+
