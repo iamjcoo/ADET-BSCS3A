@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;    
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background: #111; /* Dark background color */
+            overflow: hidden; /* Hide scrollbar */
+            animation: backgroundAnimation 10s ease-in-out infinite; /* Add background animation */
+            position: relative; /* For positioning the starry background */
+            height: 100vh;
+        }
+
+        @keyframes backgroundAnimation {
+            0% { background-color: #111; }
+            50% { background-color: #222; }
+            100% { background-color: #111; }
+        }
+
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: transparent url('https://cdn.pixabay.com/photo/2018/01/14/19/02/space-3085017_1280.png') repeat top center; /* Starry background */
+            opacity: 0.8;
+            z-index: 1;
+            animation: moveStars 30s linear infinite; /* Stars movement */
+        }
+
+        @keyframes moveStars {
+            0% { background-position: 0 0; }
+            100% { background-position: 100% 100%; }
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: relative; /* Allow positioning of the glowing background */
+            z-index: 2; /* Ensure the container is above the stars */
+        }
+
+        .screen {
+            background: rgba(255, 255, 255, 0.2); /* Slightly transparent white background */        
+            position: relative;    
+            height: 600px;
+            width: 360px;    
+            box-shadow: 0px 0px 40px rgba(255, 255, 255, 0.5); /* Initial glow */
+            display: flex; /* Center content inside */
+            flex-direction: column; /* Stack elements vertically */
+            align-items: center; /* Center elements horizontally */
+            justify-content: center; /* Center elements vertically */
+            border-radius: 15px; /* Rounded corners */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            animation: colorChange 8s infinite alternate; /* Slowed color changing animation */
+        }
+
+        @keyframes colorChange {
+            0% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); /* Blue glow */
+                border: 2px solid rgba(0, 0, 255, 0.7); /* Blue border */
+            }
+            33% {
+                box-shadow: 0 0 20px rgba(255, 0, 0, 0.7); /* Red glow */
+                border: 2px solid rgba(255, 0, 0, 0.7); /* Red border */
+            }
+            66% {
+                box-shadow: 0 0 20px rgba(0, 255, 0, 0.7); /* Green glow */
+                border: 2px solid rgba(0, 255, 0, 0.7); /* Green border */
+            }
+            100% {
+                box-shadow: 0 0 20px rgba(0, 0, 255, 0.7); /* Back to Blue glow */
+                border: 2px solid rgba(0, 0, 255, 0.7); /* Back to Blue border */
+            }
+        }
+
+        .screen__content {
+            z-index: 1;
+            position: relative;    
+            height: 100%;
+            display: flex; /* Use flexbox for centering */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
+            text-align: center; /* Center text */
+        }
+
+        h2 {
+            color: #00FF00; /* Green title */
+            font-weight: 700;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .login {
+            width: 320px;
+            padding: 30px;
+            padding-top: 0; /* Removed padding-top to center vertically */
+        }
+
+        .login__field {
+            padding: 20px 0px;    
+            position: relative;    
+        }
+
+        .login__icon {
+            position: absolute;
+            top: 30px;
+            color: #ffffff; /* White color for visibility */
+        }
+
+        .login__input {
+            border: none;
+            border-bottom: 2px solid #ffffff; /* White underline */
+            background: none;
+            padding: 10px;
+            padding-left: 24px;
+            font-weight: 700;
+            width: 75%;
+            color: #ffffff; /* White text for visibility */
+            transition: .3s;
+            border-radius: 5px; /* Rounded borders */
+            background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+        }
+
+        .login__input:active,
+        .login__input:focus,
+        .login__input:hover {
+            outline: none;
+            border-bottom-color: #00FF00; /* Green glow on focus */
+            background-color: rgba(255, 255, 255, 0.3); /* Change background on focus */
+        }
+
+        .login__submit {
+            background: linear-gradient(90deg, #00FF00, #009900); /* Bright green gradient button */
+            font-size: 14px;
+            margin-top: 30px;
+            padding: 16px 20px;
+            border-radius: 26px;
+            border: none; /* Remove border */
+            text-transform: uppercase;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            color: #111; /* Dark text for contrast */
+            box-shadow: 0px 0px 10px rgba(0, 255, 0, 0.5); /* Green glowing effect */
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .login__submit:hover {
+            background: linear-gradient(90deg, #009900, #00FF00); /* Change gradient on hover */
+            box-shadow: 0px 0px 20px rgba(0, 255, 0, 0.8); /* Brighter glow on hover */
+            transform: translateY(-2px); /* Lift effect on hover */
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            top: 16px;
+            cursor: pointer;
+            width: 24px; /* Adjust size as needed */
+            height: 24px; /* Adjust size as needed */
+        }
+
+        .social-login {    
+            position: absolute;
+            height: 140px;
+            width: 160px;
+            text-align: center;
+            bottom: 0px;
+            right: 0px;
+            color: #ffffff; /* White color for visibility */
+        }
+
+        .social-login__icon {
+            padding: 20px 10px;
+            color: #fff;
+            text-decoration: none;    
+            text-shadow: 0px 0px 8px #00FF00; /* Green glow effect for icons */
+        }
+
+        .social-login__icon:hover {
+            transform: scale(1.5);    
+        }
+
+        /* Flash messages */
+        .flash-messages {
+            margin-top: 20px;
+            list-style-type: none;
+            color: #ffffff; /* White color for visibility */
+        }
+
+        .flash-messages .error {
+            color: red; /* Error messages in red */
+        }
+
+        .flash-messages .success {
+            color: green; /* Success messages in green */
+        }
+    </style>
+    <script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById("password");
+            const toggleIcon = document.getElementById("toggle-icon");
+            const isPasswordVisible = passwordInput.type === "text";
+
+            passwordInput.type = isPasswordVisible ? "password" : "text";
+            toggleIcon.src = isPasswordVisible 
+                ? "https://img.icons8.com/material-outlined/24/00FF00/visible.png" 
+                : "https://img.icons8.com/material-outlined/24/00FF00/invisible.png";
+        }
+    </script>
+</head>
+<body>
+    <div class="stars"></div> <!-- Starry background -->
+    <div class="container">
+        <div class="screen">
+            <div class="screen__content">
+                <h2>Login</h2>
+                <form method="POST" action="{{ url_for('submit_login') }}" class="login">
+                    <div class="login__field">
+                        <i class="login__icon fas fa-user"></i>
+                        <input type="email" class="login__input" id="email" name="email" required placeholder="Email">
+                    </div>
+                    <div class="login__field" style="position: relative;">
+                        <i class="login__icon fas fa-lock"></i>
+                        <input type="password" class="login__input" id="password" name="password" required placeholder="Password">
+                        <img id="toggle-icon" class="toggle-password" src="https://img.icons8.com/material-outlined/24/00FF00/invisible.png" onclick="togglePasswordVisibility()" alt="Toggle Password Visibility">
+                    </div>
+                    <button type="submit" class="login__submit">Login</button>
+                </form>
+                <p style="color: #ffffff;">Don't have an account? <a href="{{ url_for('registration_form') }}" style="color: #00FF00;">Register here</a></p>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                  {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, message in messages %}
+                      <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                    </ul>
+                  {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
