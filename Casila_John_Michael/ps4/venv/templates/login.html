@@ -1,0 +1,25 @@
+{%extends "base.html"%}
+<head> 
+    <title>{% block title %}Login Page{% endblock %}</title>
+</head>
+
+{% block content %}
+    <body>
+
+        <form action="/check" method="POST">
+            <div>
+                <label for="email">Email:</label>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+            <div class="button-group">
+                <input type="submit" value="Login">
+                <input type="reset" value="Reset">
+                <button type="button" onclick="window.location.href='/signup'">Sign Up</button>
+            </div>
+        </form>
+    </body>
+{% endblock %}
+</html>
