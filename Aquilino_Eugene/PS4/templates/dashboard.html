@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="static/design.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Hello, {{ user.FirstName }}!</h1>
+        <p>Welcome to Application Development and Emerging Technology</p>
+        <h2>Your Details</h2>
+        <div class="container" style="background: linear-gradient(to right, #e2e2e2, #c9d6ff); height: 300px; width: 700px; max-width: 100%; min-height: 400px;">
+            <table>
+                <tr>
+                    <th style="border-top-left-radius: 10px;">First Name</th>
+                    <td style="border-top-right-radius: 10px;">{{ user.FirstName }}</td>
+                </tr>
+                <tr>
+                    <th>Middle Name</th>
+                    <td>{{ user.MiddleName }}</td>
+                </tr>
+                <tr>
+                    <th>Last Name</th>
+                    <td>{{ user.LastName }}</td>
+                </tr>
+                <tr>
+                    <th>Cellphone Number</th>
+                    <td>{{ user.CellphoneNumber }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ user.Email }}</td>
+                </tr>
+                <tr>
+                    <th style="border-bottom-left-radius: 10px;">Home Address</th>
+                    <td style="border-bottom-right-radius: 10px;">{{ user.HomeAddress }}</td>
+                </tr>
+            </table>
+            <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

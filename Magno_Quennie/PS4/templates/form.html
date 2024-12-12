@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Ensure Arial is set */
+            text-align: center;
+            background-color: #f6f8fc;
+            color: #ffffff; /* Set body text color to white */
+            margin: 0;
+            padding: 0;
+            background-image: url('../static/your-name-sky-stars-kimi-no-na-wa-wallpaper-preview.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            font-size: 14px; /* Reduced font size */
+        }
+
+        h1 {
+            margin: 0; /* Remove margin */
+            font-size: 28px; /* Reduced heading font size */
+            color: #ffffff; /* Set h1 text color to white */
+        }
+
+        .form-container {
+            width: 300px; /* Reduced width */
+            margin: 30px auto; /* Reduced margin */
+            padding: 40px; /* Reduced padding */
+            box-shadow: 0px 0px 10px rgb(5, 5, 5);
+            background-color: rgba(241, 237, 237, 0.048);
+            border: 1px solid #f8f8f8;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ffffff; /* Set label text color to white */
+            text-align: left;
+            font-size: 16px; /* Reduced label font size */
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 8px; /* Reduced padding */
+            border: 1px solid #ffffff;
+            border-radius: 10px; /* Slightly reduced rounded borders */
+            margin-bottom: 5px; /* Increased margin */
+            font-size: 14px; /* Reduced input font size */
+            background-color: rgba(221, 215, 215, 0); /* Ensure background is transparent */
+            color: #ffffff; /* Set input text color to white */
+        }
+
+        input[type="text"]::placeholder,
+        input[type="email"]::placeholder,
+        input[type="password"]::placeholder,
+        textarea::placeholder {
+            color: #ffffffb4; /* Set placeholder text color to white */
+            font-family: Arial, sans-serif;
+        }
+
+        /* Specific style for the name input placeholder */
+        input#name::placeholder {
+            color: rgba(218, 209, 209, 0.788); /* Set placeholder text color to red */
+        }
+
+        textarea {
+            height: 60px; /* Reduced textarea height */
+            resize: none; /* Disable resizing */
+        }
+
+        input[type="submit"] {
+            width: 100%; /* Full width for submit button */
+            padding: 8px; /* Reduced padding */
+            background-color: #922d8a; /* Submit button color */
+            color: #ffffff; /* Set submit button text color to white */
+            border: none;
+            border-radius: 5px; /* Rounded submit button */
+            font-size: 16px; /* Reduced submit button font size */
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #3086e0; /* Button hover color */
+        }
+
+        .form-container p {
+            margin: 5px 0 0 0; /* Adjusted margin */
+            padding: 0;
+            color: #ffffff; /* Set paragraph text color to white */
+            font-size: 12px; /* Reduced paragraph font size */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js"></script>
+    <script>
+        function showPopup(message) {
+            alert(message);
+        }
+
+        function encryptPassword(event) {
+            event.preventDefault(); // Prevent form submission to handle encryption first
+            const passwordField = document.getElementById('password');
+            const encryptedPassword = CryptoJS.SHA256(passwordField.value).toString(); // Encrypt password
+            passwordField.value = encryptedPassword; // Replace password with encrypted version
+            showPopup('Information saved successfully!');
+            event.target.submit(); // Submit form after encryption
+        }
+    </script>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Register Now</h1> <!-- Moved inside the form container -->
+        <form action="/submit" method="POST" onsubmit="encryptPassword(event)">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Enter your username" required>
+
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="middle_name">Middle Name</label>
+            <input type="text" id="middle_name" name="middle_name" placeholder="Enter your middle name (optional)">
+
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+
+            <label for="contact_number">Contact Number</label>
+            <input type="text" id="contact_number" name="contact_number" placeholder="Enter your 10-digit phone number" required pattern="\d{10}">
+
+            <label for="email_address">Email Address</label>
+            <input type="email" id="email_address" name="email_address" placeholder="Enter your email address" required>
+
+            <label for="address">Address</label>
+            <textarea id="address" name="address" placeholder="Enter your address" required></textarea>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Create a password" required>
+
+            <input type="submit" value="Submit">
+            <p>* Your password will be encrypted for security purposes.</p>
+        </form>
+    </div>
+</body>
+</html>

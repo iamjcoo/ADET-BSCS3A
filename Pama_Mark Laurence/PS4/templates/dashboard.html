@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Dashboard</title>
+
+        <!-- Link to Google Fonts for Dancing Script -->
+        <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            body {
+                background: url('static/images/Ashitaka.gif') no-repeat center center fixed; 
+                background-size: cover; 
+                color: #ffffff; 
+                font-family: Arial, sans-serif;
+            }
+            h2 {
+                font-family: 'Dancing Script', cursive; 
+                font-size: 2.5rem; 
+                color: #fee272; 
+                text-align: center;
+                text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            }
+
+            .container {
+                background-color: rgba(46, 46, 59, 0.413); 
+                padding: 30px;
+                border-radius: 10px;
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); 
+                border: 1px solid #4a4a5b; 
+                box-shadow: 0 0 10px rgba(133, 132, 132, 0.928);
+                max-width: 800px; 
+                margin: auto; 
+                margin-top: 5%; 
+            }
+            table {
+                width: 100%; 
+                margin-top: 20px;
+                border-collapse: collapse; 
+            }
+            th, td {
+                border-bottom: 1px solid #4a4a5b; 
+                padding: 12px 15px;
+                text-align: left;
+            }
+            th {
+                background-color: #a2f4e01d; 
+                color: #fceeb6;
+                font-weight: bold;
+                text-transform: uppercase; 
+            }
+            td {
+                color: #ffffff;
+                background-color: #393947e6; 
+            }
+            a {
+                color: #ffdd57; 
+                font-weight: bold;
+            }
+            a:hover {
+                text-decoration: underline;
+                color: #ffb347; 
+            }
+        </style>
+    </head>
+    <body>
+
+        <div class="container">
+
+            <h2>Hello, {{ user_details.first_name }}!</h2>
+
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Middle Name</th>
+                        <th>Last Name</th>
+                        <th>Contact Number</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ user_details.first_name }}</td>
+                        <td>{{ user_details.middle_name }}</td>
+                        <td>{{ user_details.last_name }}</td>
+                        <td>{{ user_details.contact_number }}</td>
+                        <td>{{ user_details.email }}</td>
+                        <td>{{ user_details.address }}</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+</html>
